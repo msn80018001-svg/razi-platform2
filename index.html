@@ -262,7 +262,7 @@ footer b{color:var(--gold)}
     <h2><span class="em">⚙️</span> لوحة الإدارة والتعديل</h2>
   </div>
   <div class="admin-note">
-    ✏️ من هنا تستطيع تعديل الأسماء والنقاط مباشرة دون لمس الكود: اكتب في الحقول، أضف صفوفًا جديدة أو احذفها، ثم اضغط <b>«حفظ التعديلات»</b> ليتم تحديث جميع اللوحات فورًا مع حفظ البيانات تلقائيًا.
+    ✏️ من هنا تستطيع تعديل الأسماء والنقاط مباشرة دون لمس الكود: اكتب في الحقول، أضف صفوفًا جديدة أو احذفها، ثم اضغط <b>«حفظ التعديلات»</b> ليتم تحديث جميع اللوحات فورًا مع حفظ البيانات تلقائيًا لجميع الزوار.
   </div>
   <div class="admin-tabs">
     <button class="active" data-atab="students">🎓 الطلاب</button>
@@ -327,7 +327,6 @@ footer b{color:var(--gold)}
       <button class="save" onclick="doLogin()">دخول</button>
       <button class="cancel" onclick="closeLogin()">إلغاء</button>
     </div>
-    <p id="pass-hint" style="font-size:12px;color:var(--muted);margin-top:14px">كلمة المرور الافتراضية: <b>1448</b> — ويمكن تغييرها من لوحة الإدارة بعد الدخول.</p>
   </div>
 </div>
 
@@ -338,7 +337,22 @@ footer b{color:var(--gold)}
   إشراف: قائد المدرسة <b>أ. أحمد شديد الرفاعي</b> • مقرر اللجنة: <b>أ. حمدان عمار المحياوي</b> — العام الدراسي 1448هـ
 </footer>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 <script>
+/* ====== ربط Firebase (قاعدة البيانات المشتركة لجميع الزوار) ====== */
+const firebaseConfig = {
+  apiKey: "AIzaSyBfYecxpWH-0TMCRAWGQMsIrj4ImhcEUAk",
+  authDomain: "razi-platform.firebaseapp.com",
+  databaseURL: "https://razi-platform-default-rtdb.firebaseio.com",
+  projectId: "razi-platform",
+  storageBucket: "razi-platform.firebasestorage.app",
+  messagingSenderId: "802206384009",
+  appId: "1:802206384009:web:5979841b717e4598afab58"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
 const DEFAULTS={
 students:[
  {n:"خالد بن وليد الحربي",g:"الصف الخامس - أ",p:20,c:4},
@@ -374,10 +388,43 @@ inits:[
 ]};
 
 let DATA=JSON.parse(JSON.stringify(DEFAULTS));
-const STORE_KEY="razi_platform_data_v1";
-const PASS_KEY="razi_platform_pass_v1";
 let PASS="1448";
 let loggedIn=false;
+let firebaseReady=false;
+
+function normalizeList(v){
+  if(!v)return[];
+  return Array.isArray(v)?v.filter(Boolean):Object.values(v);
+}
+function normalizeData(d){
+  return{
+    students:normalizeList(d&&d.students),
+    teachers:normalizeList(d&&d.teachers),
+    classes:normalizeList(d&&d.classes),
+    inits:normalizeList(d&&d.inits)
+  };
+}
+function isEditingAdmin(){
+  return loggedIn&&document.getElementById("view-admin").classList.contains("active");
+}
+
+/* الاستماع المباشر: أي تحديث في القاعدة يظهر لكل الزوار فورًا */
+db.ref("platform").on("value",snap=>{
+  const val=snap.val();
+  if(!val||!val.data){
+    /* أول تشغيل: زرع البيانات الافتراضية في القاعدة */
+    db.ref("platform").set({data:DEFAULTS,pass:PASS});
+    return;
+  }
+  firebaseReady=true;
+  if(val.pass)PASS=String(val.pass);
+  if(!isEditingAdmin()){
+    DATA=normalizeData(val.data);
+    renderAll();
+  }
+},err=>{
+  console.error("Firebase read error:",err);
+});
 
 function portalClick(){
   if(loggedIn){
@@ -391,7 +438,6 @@ function portalClick(){
 function openLogin(){
   document.getElementById("login-err").style.display="none";
   document.getElementById("login-pass").value="";
-  document.getElementById("pass-hint").style.display=(PASS==="1448")?"block":"none";
   document.getElementById("login-overlay").classList.add("open");
   setTimeout(()=>document.getElementById("login-pass").focus(),100);
 }
@@ -410,59 +456,27 @@ async function changePass(){
   const v=document.getElementById("new-pass").value.trim();
   if(v.length<4){alert("فضلاً اختر كلمة مرور من 4 خانات فأكثر.");return}
   PASS=v;
-  await storeSet(PASS_KEY,v);
-  const check=await storeGet(PASS_KEY);
-  document.getElementById("new-pass").value="";
   const m=document.getElementById("pass-msg");
-  if(check===v){
+  try{
+    await db.ref("platform/pass").set(v);
     m.textContent="✔ تم تحديث كلمة المرور وحفظها بشكل دائم";
     m.style.background="#e2f5e9";m.style.color="#1a7a43";
-  }else{
-    m.textContent="⚠ تم التحديث لهذه الجلسة فقط — المتصفح لا يدعم الحفظ الدائم هنا";
+  }catch(e){
+    m.textContent="⚠ تعذر الحفظ — تحقق من الاتصال بالإنترنت وحاول مجددًا";
     m.style.background="#fdf3dd";m.style.color="#a77410";
   }
+  document.getElementById("new-pass").value="";
   m.classList.add("show");setTimeout(()=>m.classList.remove("show"),4000);
 }
 
-async function storeSet(key,val){
-  let ok=false;
-  try{
-    if(window.storage){
-      const r=await window.storage.set(key,val);
-      if(r)ok=true;
-    }
-  }catch(e){}
-  try{
-    if(typeof localStorage!=="undefined"){
-      localStorage.setItem(key,val);
-      if(localStorage.getItem(key)===val)ok=true;
-    }
-  }catch(e){}
-  return ok;
-}
-async function storeGet(key){
-  try{
-    if(window.storage){
-      const r=await window.storage.get(key);
-      if(r&&r.value!=null)return r.value;
-    }
-  }catch(e){}
-  try{
-    if(typeof localStorage!=="undefined"){
-      const v=localStorage.getItem(key);
-      if(v!=null)return v;
-    }
-  }catch(e){}
-  return null;
-}
 async function persist(){
-  return await storeSet(STORE_KEY,JSON.stringify(DATA));
-}
-async function restore(){
   try{
-    const raw=await storeGet(STORE_KEY);
-    if(raw){const d=JSON.parse(raw);if(d.students&&d.teachers&&d.classes&&d.inits)DATA=d}
-  }catch(e){}
+    await db.ref("platform/data").set(DATA);
+    return true;
+  }catch(e){
+    console.error("Firebase write error:",e);
+    return false;
+  }
 }
 
 document.querySelectorAll("nav.tabs button").forEach(b=>{
@@ -654,10 +668,10 @@ async function saveAdmin(){
   renderAll();
   const m=document.getElementById("saved-msg");
   if(ok){
-    m.textContent="✔ تم الحفظ الدائم وتحديث اللوحات";
+    m.textContent="✔ تم الحفظ للجميع وتحديث اللوحات مباشرة";
     m.style.background="#e2f5e9";m.style.color="#1a7a43";
   }else{
-    m.textContent="⚠ تم تحديث اللوحات لهذه الجلسة — الحفظ الدائم غير مدعوم هنا";
+    m.textContent="⚠ تعذر الحفظ — تحقق من الاتصال بالإنترنت وحاول مجددًا";
     m.style.background="#fdf3dd";m.style.color="#a77410";
   }
   m.classList.add("show");setTimeout(()=>m.classList.remove("show"),4000);
@@ -682,11 +696,7 @@ function saveInit(){
 document.getElementById("overlay").addEventListener("click",e=>{if(e.target.id==="overlay")closeModal()});
 document.getElementById("login-overlay").addEventListener("click",e=>{if(e.target.id==="login-overlay")closeLogin()});
 
-(async()=>{
-  const p=await storeGet(PASS_KEY);
-  if(p)PASS=p;
-  await restore();renderAll();
-})();
+renderAll();
 </script>
 </body>
 </html>
