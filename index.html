@@ -106,6 +106,17 @@ main{max-width:1180px;margin:0 auto;padding:28px 4vw 60px}
 .init-pts{text-align:center;border-inline-start:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
 .init-pts .lbl{font-size:12.5px;color:var(--muted);font-weight:700}
 .init-pts .val{font-size:26px;font-weight:900;color:var(--gold-dark)}
+.init-att-img{max-width:180px;max-height:130px;object-fit:cover;border-radius:10px;border:1px solid var(--line);display:block;margin-bottom:10px}
+.init-att-file{display:inline-flex;align-items:center;gap:6px;background:var(--gold-light);border:1px solid #f0d9a4;color:#6b5000;font-size:12.5px;font-weight:800;padding:6px 12px;border-radius:9px;margin-bottom:10px;text-decoration:none}
+.init-att-file:hover{background:#fbe7bd}
+
+.att-box{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.att-btn{background:#fff;border:1.5px dashed var(--green-700);color:var(--green-800);font-weight:800;font-size:13.5px;padding:10px 16px;border-radius:11px}
+.att-btn:hover{background:var(--green-50)}
+.att-prev{width:46px;height:46px;object-fit:cover;border-radius:9px;border:1px solid var(--line);display:none}
+.att-name{font-size:12.5px;font-weight:700;color:#3c5b51;background:var(--green-50);border:1px solid #d5ecdd;padding:6px 10px;border-radius:9px;display:none;align-items:center;gap:6px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.att-del{width:28px;height:28px;border-radius:8px;background:#fdecec;border:1px solid #f3c1c1;color:#c0392b;font-size:12px;font-weight:900;display:none;align-items:center;justify-content:center}
+.att-del:hover{background:#f8d7d7}
 
 .honor-head{text-align:center;margin-bottom:26px}
 .honor-head h2{font-size:24px;font-weight:900;display:inline-flex;align-items:center;gap:10px}
@@ -325,6 +336,13 @@ footer b{color:var(--gold)}
     <input id="m-pts" type="number" value="3" min="1" max="10">
     <label>وصف موجز</label>
     <textarea id="m-desc" placeholder="وصف مختصر للمشاركة وأثرها"></textarea>
+    <label>مرفق المشاركة (اختياري — صورة أو ملف)</label>
+    <div class="att-box">
+      <button class="att-btn" type="button" onclick="pickInitFile()">📎 رفع صورة أو ملف</button>
+      <img class="att-prev" id="m-att-prev" alt="">
+      <span class="att-name" id="m-att-name"></span>
+      <button class="att-del" id="m-att-del" type="button" title="إزالة المرفق" onclick="clearInitFile()">✖</button>
+    </div>
     <div class="actions">
       <button class="save" onclick="saveInit()">حفظ وإرسال للاعتماد</button>
       <button class="cancel" onclick="closeModal()">إلغاء</button>
@@ -347,6 +365,7 @@ footer b{color:var(--gold)}
 </div>
 
 <input type="file" id="photo-input" accept="image/*" style="display:none">
+<input type="file" id="init-file-input" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx" style="display:none">
 <canvas id="confetti"></canvas>
 
 <footer>
@@ -596,6 +615,58 @@ document.getElementById("photo-input").addEventListener("change",function(){
   };
   rd.readAsDataURL(f);
 });
+
+/* ====== مرفق المشاركة الجديدة (صورة أو ملف) ====== */
+let pendingAtt=null;
+function pickInitFile(){
+  document.getElementById("init-file-input").value="";
+  document.getElementById("init-file-input").click();
+}
+function clearInitFile(){
+  pendingAtt=null;
+  document.getElementById("init-file-input").value="";
+  showAttUI();
+}
+function showAttUI(){
+  const prev=document.getElementById("m-att-prev"),nm=document.getElementById("m-att-name"),del=document.getElementById("m-att-del");
+  if(pendingAtt){
+    nm.textContent="📎 "+pendingAtt.name;nm.style.display="inline-flex";
+    del.style.display="inline-flex";
+    if(pendingAtt.isImg){prev.src=pendingAtt.data;prev.style.display="block"}
+    else{prev.style.display="none"}
+  }else{
+    nm.style.display="none";del.style.display="none";prev.style.display="none";
+  }
+}
+document.getElementById("init-file-input").addEventListener("change",function(){
+  const f=this.files&&this.files[0];
+  if(!f)return;
+  if(f.type.startsWith("image/")){
+    /* صورة: ضغط تلقائي حتى لا يثقل حجمها قاعدة البيانات */
+    const rd=new FileReader();
+    rd.onload=e=>{
+      const img=new Image();
+      img.onload=()=>{
+        const MAX=900;
+        let w=img.width,h=img.height;
+        if(w>MAX){h=Math.round(h*MAX/w);w=MAX}
+        const cv=document.createElement("canvas");cv.width=w;cv.height=h;
+        cv.getContext("2d").drawImage(img,0,0,w,h);
+        pendingAtt={name:f.name,isImg:true,data:cv.toDataURL("image/jpeg",.82)};
+        showAttUI();
+      };
+      img.src=e.target.result;
+    };
+    rd.readAsDataURL(f);
+  }else{
+    /* ملف (PDF / Word / Excel...): حد أقصى 1.5 ميجابايت */
+    if(f.size>1500000){alert("حجم الملف كبير — فضلاً اختر ملفًا أقل من 1.5 ميجابايت أو ارفع صورة بدلاً منه.");this.value="";return}
+    const rd=new FileReader();
+    rd.onload=e=>{pendingAtt={name:f.name,isImg:false,data:e.target.result};showAttUI()};
+    rd.readAsDataURL(f);
+  }
+});
+
 function renderLog(){
   const ft=document.getElementById("f-type").value;
   const fs=document.getElementById("f-status").value;
@@ -606,6 +677,9 @@ function renderLog(){
         <div class="meta-row"><span class="tag">${esc(i.type)}</span><span class="date">📅 ${esc(i.d)}</span></div>
         <h3>${esc(i.t)}</h3>
         <div class="desc">${esc(i.desc)}</div>
+        ${i.att?(i.att.isImg
+          ?`<a href="${i.att.data}" target="_blank" title="عرض صورة المرفق بالحجم الكامل"><img class="init-att-img" src="${i.att.data}" alt="مرفق المشاركة"></a>`
+          :`<a class="init-att-file" href="${i.att.data}" download="${esc(i.att.name)}">📎 ${esc(i.att.name)}</a>`):""}
         <div class="owner">المبادر: <b>${esc(i.o)}</b> <span class="role">(${esc(i.r)})</span></div>
         <span class="status ${i.s}">${i.s==="ok"?"✔ معتمد ومضاف":"⏳ قيد المراجعة"}</span>
       </div>
@@ -744,7 +818,7 @@ async function saveAdmin(){
   m.classList.add("show");setTimeout(()=>m.classList.remove("show"),4000);
 }
 
-function openModal(){document.getElementById("overlay").classList.add("open")}
+function openModal(){clearInitFile();document.getElementById("overlay").classList.add("open")}
 function closeModal(){document.getElementById("overlay").classList.remove("open")}
 function saveInit(){
   const t=document.getElementById("m-title").value.trim();
@@ -755,10 +829,12 @@ function saveInit(){
     d:new Date().toISOString().slice(0,10),
     desc:document.getElementById("m-desc").value.trim()||"مشاركة جديدة بانتظار مراجعة لجنة التميز المدرسي.",
     o,r:document.getElementById("m-role").value,
-    p:+document.getElementById("m-pts").value||3,s:"wait"
+    p:+document.getElementById("m-pts").value||3,s:"wait",
+    ...(pendingAtt?{att:pendingAtt}:{})
   });
   closeModal();persist();renderAll();
   ["m-title","m-owner","m-desc"].forEach(id=>document.getElementById(id).value="");
+  clearInitFile();
 }
 document.getElementById("overlay").addEventListener("click",e=>{if(e.target.id==="overlay")closeModal()});
 document.getElementById("login-overlay").addEventListener("click",e=>{if(e.target.id==="login-overlay")closeLogin()});
