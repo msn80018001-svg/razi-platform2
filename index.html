@@ -332,8 +332,6 @@ footer b{color:var(--gold)}
     <input id="m-owner" placeholder="الاسم الثلاثي">
     <label>صفة المبادر</label>
     <select id="m-role"><option>طالب بالمدرسة</option><option>معلم</option></select>
-    <label>النقاط المقترحة</label>
-    <input id="m-pts" type="number" value="3" min="1" max="10">
     <label>وصف موجز</label>
     <textarea id="m-desc" placeholder="وصف مختصر للمشاركة وأثرها"></textarea>
     <label>مرفق المشاركة (اختياري — صورة أو ملف)</label>
@@ -683,7 +681,7 @@ function renderLog(){
         <div class="owner">المبادر: <b>${esc(i.o)}</b> <span class="role">(${esc(i.r)})</span></div>
         <span class="status ${i.s}">${i.s==="ok"?"✔ معتمد ومضاف":"⏳ قيد المراجعة"}</span>
       </div>
-      <div class="init-pts"><div class="lbl">النقاط</div><div class="val">+${i.p}</div></div>
+      <div class="init-pts"><div class="lbl">النقاط</div>${+i.p>0?`<div class="val">+${i.p}</div>`:`<div style="font-size:12px;font-weight:800;color:#a77410;background:var(--gold-light);padding:4px 10px;border-radius:9px">⏳ قيد التقييم</div>`}</div>
     </div>`).join(""):
     '<div style="text-align:center;color:var(--muted);padding:40px">لا توجد مشاركات مطابقة لخيارات التصفية الحالية.</div>';
 }
@@ -829,7 +827,7 @@ function saveInit(){
     d:new Date().toISOString().slice(0,10),
     desc:document.getElementById("m-desc").value.trim()||"مشاركة جديدة بانتظار مراجعة لجنة التميز المدرسي.",
     o,r:document.getElementById("m-role").value,
-    p:+document.getElementById("m-pts").value||3,s:"wait",
+    p:0,s:"wait",
     ...(pendingAtt?{att:pendingAtt}:{})
   });
   closeModal();persist();renderAll();
