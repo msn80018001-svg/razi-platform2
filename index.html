@@ -3,378 +3,218 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>منصة التحفيز — مدرسة أبي بكر الرازي الابتدائية بينبع</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<title>فرسان العلوم — الصف الرابع</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{
-  --green-900:#0b3d2e; --green-800:#12503c; --green-700:#17614a;
-  --green-100:#e6f3ec; --green-50:#f2faf5;
-  --gold:#e8a020; --gold-dark:#c9820a; --gold-light:#fdf3dd;
-  --ink:#1e3a34; --muted:#7d938c; --bg:#f5f7f6; --card:#fff;
-  --line:#e3e9e6; --radius:16px; --shadow:0 4px 18px rgba(11,61,46,.08);
-}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Tajawal',Tahoma,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh}
-button{font-family:inherit;cursor:pointer;border:none;background:none}
+  :root{
+    --navy:#0F2A43; --navy-deep:#0A1E31; --teal:#0E7C6B; --teal-light:#E6F4F1;
+    --gold:#C9A227; --gold-light:#F5E9C8; --sand:#FAF7F0; --ink:#14212C;
+    --silver:#6E8090; --bronze:#A9714B; --red:#B4423A;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--sand); font-family:'Tajawal',sans-serif; color:var(--ink); min-height:100vh; font-size:16px;}
+  button{font-family:'Tajawal',sans-serif; cursor:pointer; border:none;}
+  input,select{font-family:'Tajawal',sans-serif; font-size:16px; font-weight:700; color:var(--ink);}
+  input:focus,select:focus,button:focus-visible{outline:3px solid var(--gold); outline-offset:2px;}
 
-header.top{background:linear-gradient(135deg,var(--green-900),var(--green-800));color:#fff;padding:18px 4vw 0}
-.top-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:16px}
-.brand{display:flex;align-items:center;gap:14px}
-.logo{width:58px;height:58px;border-radius:14px;background:radial-gradient(circle at 30% 25%,#1d7a5c,#0b3d2e);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
-.brand .kicker{font-size:12px;color:#cfe6da}
-.brand h1{font-size:22px;font-weight:900;line-height:1.35}
-.brand .badge{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fdeec9;font-size:12px;font-weight:700;padding:2px 10px;border-radius:8px;margin-top:4px}
-.brand .date-badge{background:rgba(232,160,32,.16);border-color:rgba(232,160,32,.45);margin-inline-start:6px}
-.portal-btn{background:linear-gradient(180deg,var(--gold),var(--gold-dark));color:#3a2800;font-weight:800;font-size:14px;padding:10px 18px;border-radius:12px;box-shadow:0 3px 10px rgba(232,160,32,.35);transition:transform .15s}
-.portal-btn:hover{transform:translateY(-2px)}
-nav.tabs{display:flex;gap:4px;background:var(--green-900);margin:0 -4vw;padding:0 4vw;border-bottom:3px solid var(--gold);overflow-x:auto}
-nav.tabs button{color:#cfe6da;font-size:15px;font-weight:700;padding:14px 20px;border-radius:10px 10px 0 0;display:flex;align-items:center;gap:8px;white-space:nowrap;transition:background .15s,color .15s}
-nav.tabs button:hover{background:rgba(255,255,255,.07);color:#fff}
-nav.tabs button.active{background:#0a3527;color:var(--gold);box-shadow:inset 0 -3px 0 var(--gold)}
+  header{background:linear-gradient(135deg,var(--navy-deep),var(--navy) 60%,#143A5C); color:#fff;
+    padding:24px 16px 18px; text-align:center; border-bottom:5px solid var(--gold);}
+  .head-inner{display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap;}
+  h1{font-weight:900; font-size:clamp(32px,7vw,46px); color:#F7E9BE; letter-spacing:.5px;
+     text-shadow:0 2px 0 rgba(0,0,0,.35);}
+  .subtitle{font-size:15.5px; color:#D4E2EE; font-weight:700; margin-top:2px;}
+  .head-btns{display:flex; justify-content:center; gap:8px; margin-top:14px; flex-wrap:wrap;}
+  .hbtn{background:rgba(255,255,255,.14); color:#fff; border:1.5px solid rgba(255,255,255,.45);
+    border-radius:12px; padding:10px 20px; font-size:15px; font-weight:800;}
+  .hbtn.on{background:var(--teal); border-color:var(--teal);}
+  #netState{font-size:13px; font-weight:700; color:#9FC5B8; margin-top:10px; min-height:16px;}
 
-main{max-width:1180px;margin:0 auto;padding:28px 4vw 60px}
-.view{display:none;animation:fade .3s ease}
-.view.active{display:block}
-@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  main{max-width:980px; margin:0 auto; padding:22px 14px 60px;}
+  .card{background:#fff; border-radius:16px; border:1px solid #E3DED2; box-shadow:0 4px 18px rgba(15,42,67,.07); padding:18px; margin-bottom:26px;}
+  h2{font-size:22px; font-weight:900; color:var(--navy); margin-bottom:14px;}
+  .h2-line{border-bottom:3px solid var(--gold-light); padding-bottom:8px;}
 
-.welcome{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:var(--green-50);border:1px solid #d5ecdd;border-radius:var(--radius);padding:16px 20px;margin-bottom:24px}
-.welcome p{font-size:14.5px;color:#2c5347;line-height:1.8}
-.login-btn{background:linear-gradient(180deg,var(--gold),var(--gold-dark));color:#3a2800;font-weight:800;font-size:13.5px;padding:9px 16px;border-radius:11px;white-space:nowrap;box-shadow:0 3px 10px rgba(232,160,32,.3)}
+  .avatar{border-radius:50%; border:3px solid var(--teal); background:var(--teal-light); overflow:hidden;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .avatar img{width:100%; height:100%; object-fit:cover;}
 
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:30px}
-.stat{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.stat .label{font-size:14px;color:var(--muted);font-weight:700;margin-bottom:6px}
-.stat .num{font-size:34px;font-weight:900;color:var(--green-800);line-height:1}
-.stat .ic{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
-.ic.g{background:var(--green-100)} .ic.o{background:var(--gold-light)} .ic.b{background:#e8f0fb}
+  .podium{display:flex; justify-content:center; align-items:flex-end; gap:10px; margin-bottom:26px;}
+  .pod{text-align:center; width:clamp(94px,28vw,150px); display:flex; flex-direction:column; align-items:center;}
+  .pod-name{font-weight:900; font-size:14.5px; color:var(--navy); line-height:1.35; min-height:38px;}
+  .pod-bar{width:100%; border-radius:12px 12px 0 0; color:#fff; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; margin-top:6px;}
+  .pod-bar .pts{font-size:27px; font-weight:900;}
+  .pod-bar .lbl{font-size:12px; font-weight:700; opacity:.9;}
 
-.podiums{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px}
-.podium-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 22px 0;overflow:hidden}
-.podium-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:26px}
-.podium-head h2{font-size:17px;font-weight:900;display:flex;align-items:center;gap:8px}
-.podium-head h2 .em{color:var(--gold)}
-.view-all{color:var(--gold-dark);font-size:13px;font-weight:700}
-.view-all:hover{text-decoration:underline}
-.podium{display:flex;align-items:flex-end;justify-content:center;gap:14px}
-.step{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;max-width:130px}
-.avatar{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;position:relative;background:#f1f5f3;border:3px solid var(--line)}
-.step.first .avatar{width:70px;height:70px;border-color:var(--gold);box-shadow:0 0 0 4px rgba(232,160,32,.18)}
-.step.first .avatar::after{content:"✨";position:absolute;top:-12px;left:-8px;font-size:16px}
-@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-.step.first .avatar,.step.first .photo46{animation:floaty 3.2s ease-in-out infinite}
-.step .name{font-size:13.5px;font-weight:800;text-align:center;line-height:1.4}
-.photo46{width:48px;height:72px;object-fit:cover;border-radius:8px;border:2px solid var(--line);display:block}
-.step.first .photo46{width:56px;height:84px;border-color:var(--gold);box-shadow:0 0 0 4px rgba(232,160,32,.18)}
-.cam-btn{width:26px;height:26px;border-radius:8px;background:var(--gold-light);border:1px solid #f0d9a4;font-size:13px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
-.cam-btn:hover{background:#fbe7bd}
-.cam-btn.has{background:#e2f5e9;border-color:#bfe6cc}
-.step .cam-btn{margin-top:2px}
-.name-cell{display:flex;align-items:center;gap:6px}
-.name-cell input{flex:1}
-.admin-thumb{width:26px;height:39px;object-fit:cover;border-radius:5px;border:1px solid var(--line);flex-shrink:0}
-.step .pts{background:var(--gold);color:#3a2800;font-size:12px;font-weight:800;padding:1px 10px;border-radius:8px}
-.step.second .pts,.step.third .pts{background:#eef2f0;color:#4a635b}
-.bar{width:100%;border-radius:10px 10px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:10px;font-weight:900;color:#a77f1e}
-.step.first .bar{height:110px;background:linear-gradient(180deg,#fbe7bd,#fdf3dd);position:relative;overflow:hidden}
-.step.first .bar::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);animation:shine 2.8s ease-in-out infinite}
-@keyframes shine{0%{left:-60%}60%,100%{left:120%}}
-.step.second .bar{height:78px;background:linear-gradient(180deg,#e9eeec,#f5f7f6);color:#7d938c}
-.step.third .bar{height:56px;background:linear-gradient(180deg,#f3e3d3,#faf1e7);color:#b07a3f}
+  .toolbar{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:14px;}
+  .toolbar input{flex:1 1 180px; padding:10px 12px; border-radius:10px; border:1.5px solid #CBC4B2;}
+  .chip{padding:9px 15px; border-radius:999px; font-size:14.5px; font-weight:800; background:var(--teal-light); color:#0A5D50;}
+  .chip.on{background:var(--navy); color:#fff;}
+  .row{display:flex; align-items:center; gap:12px; border-radius:12px; padding:10px 12px; margin-bottom:8px;}
+  .row .place{width:30px; text-align:center; font-weight:900; font-size:16px; color:var(--silver);}
+  .row .info{flex:1; min-width:0;}
+  .row .nm{font-weight:900; font-size:17px;}
+  .row .rk{font-size:14px; font-weight:800; margin-top:1px;}
+  .row .badges{font-size:13.5px; font-weight:800; color:#4A5D6B; margin-top:3px; display:flex; gap:8px; flex-wrap:wrap;}
+  .row .badges span{background:rgba(255,255,255,.75); border:1px solid rgba(0,0,0,.06); border-radius:8px; padding:1px 7px;}
+  .row .pts{text-align:center;}
+  .row .pts .n{font-weight:900; font-size:21px; color:var(--navy);}
+  .row .pts .u{font-size:11.5px; font-weight:700; color:var(--silver);}
+  .legend{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:18px; padding-top:14px; border-top:1px dashed #D8D2C4;}
+  .legend span{font-size:13.5px; font-weight:800; border-radius:999px; padding:6px 13px;}
+  .empty{text-align:center; color:var(--silver); padding:30px; font-size:16px; font-weight:700;}
 
-.section-head{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:20px}
-.section-head h2{font-size:20px;font-weight:900;display:flex;align-items:center;gap:10px}
-.section-head h2 .em{color:var(--green-700)}
-.add-btn{background:#fff;border:1.5px dashed var(--gold);color:var(--gold-dark);font-weight:800;font-size:13.5px;padding:9px 16px;border-radius:11px;box-shadow:var(--shadow)}
-.add-btn:hover{background:var(--gold-light)}
-.filters{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;margin-bottom:22px}
-.filters select{font-family:inherit;font-size:14px;font-weight:700;color:var(--ink);padding:11px 14px;border:1px solid var(--line);border-radius:11px;background:#fff;width:100%}
-@media(max-width:640px){.filters{grid-template-columns:1fr}}
+  .addbar{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px;}
+  .addbar input{flex:1 1 200px; padding:11px 12px; border-radius:10px; border:1.5px solid #CBC4B2;}
+  .addbar select{padding:11px 12px; border-radius:10px; border:1.5px solid #CBC4B2; background:#fff;}
+  .btn{border-radius:10px; padding:11px 20px; font-size:15.5px; font-weight:800; color:#fff;}
+  .btn-teal{background:var(--teal);}
+  .btn-navy{background:var(--navy);}
+  .btn-line{background:#fff; color:#0A5D50; border:1.5px dashed var(--teal);}
 
-.init-card{background:var(--card);border:1px solid #dcede2;border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:16px;display:grid;grid-template-columns:1fr 90px;gap:14px}
-.init-main .meta-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
-.tag{background:#eef4f1;color:#3c5b51;font-size:12px;font-weight:800;padding:2px 10px;border-radius:8px}
-.date{color:var(--muted);font-size:12.5px;font-weight:700}
-.init-main h3{font-size:16.5px;font-weight:900;color:var(--green-900);margin-bottom:8px}
-.desc{background:#f6f9f7;border-radius:10px;padding:10px 12px;font-size:13.5px;color:#40564e;line-height:1.8;margin-bottom:10px}
-.owner{font-size:13.5px}
-.owner b{font-weight:900}
-.owner .role{color:var(--muted);font-size:12px}
-.status{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:800;padding:3px 11px;border-radius:9px;margin-top:8px}
-.status.ok{background:#e2f5e9;color:#1a7a43}
-.status.wait{background:#fdf3dd;color:#a77410}
-.init-pts{text-align:center;border-inline-start:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
-.init-pts .lbl{font-size:12.5px;color:var(--muted);font-weight:700}
-.init-pts .val{font-size:26px;font-weight:900;color:var(--gold-dark)}
-.init-att-img{max-width:180px;max-height:130px;object-fit:cover;border-radius:10px;border:1px solid var(--line);display:block;margin-bottom:10px}
-.init-att-file{display:inline-flex;align-items:center;gap:6px;background:var(--gold-light);border:1px solid #f0d9a4;color:#6b5000;font-size:12.5px;font-weight:800;padding:6px 12px;border-radius:9px;margin-bottom:10px;text-decoration:none}
-.init-att-file:hover{background:#fbe7bd}
+  .secmgr{background:var(--teal-light); border-radius:12px; padding:12px; margin-bottom:16px;}
+  .secmgr .ttl{font-size:15px; font-weight:900; color:#0A5D50; margin-bottom:8px;}
+  .secmgr .list{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;}
+  .secchip{display:inline-flex; align-items:center; gap:8px; background:#fff; border:1.5px solid #BBDDD4;
+    border-radius:999px; padding:7px 8px 7px 14px; font-size:14.5px; font-weight:800; color:#0A5D50;}
+  .secchip button{background:#FDECEC; color:var(--red); border-radius:999px; width:24px; height:24px; font-weight:900; font-size:12px;}
+  .secmgr .addrow{display:flex; gap:8px;}
+  .secmgr input{flex:1; padding:9px 12px; border-radius:10px; border:1.5px solid #BBDDD4; font-size:15px;}
 
-.att-box{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
-.att-btn{background:#fff;border:1.5px dashed var(--green-700);color:var(--green-800);font-weight:800;font-size:13.5px;padding:10px 16px;border-radius:11px}
-.att-btn:hover{background:var(--green-50)}
-.att-prev{width:46px;height:46px;object-fit:cover;border-radius:9px;border:1px solid var(--line);display:none}
-.att-name{font-size:12.5px;font-weight:700;color:#3c5b51;background:var(--green-50);border:1px solid #d5ecdd;padding:6px 10px;border-radius:9px;display:none;align-items:center;gap:6px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.att-del{width:28px;height:28px;border-radius:8px;background:#fdecec;border:1px solid #f3c1c1;color:#c0392b;font-size:12px;font-weight:900;display:none;align-items:center;justify-content:center}
-.att-del:hover{background:#f8d7d7}
+  .stcard{background:var(--sand); border:1px solid #EAE4D6; border-radius:14px; padding:12px; margin-bottom:12px;}
+  .strow1{display:flex; align-items:center; gap:12px; margin-bottom:10px;}
+  .stname{flex:1; min-width:0;}
+  .stname .n{font-weight:900; font-size:17px;}
+  .stname .s{font-size:13.5px; font-weight:700; color:var(--silver);}
+  .stpts{text-align:center; background:#fff; border:1.5px solid #E3DED2; border-radius:12px; padding:5px 14px;}
+  .stpts .n{font-weight:900; font-size:21px; color:var(--navy);}
+  .stpts .u{font-size:10.5px; font-weight:700; color:var(--silver);}
+  .reasons{display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:8px; margin-bottom:10px;}
+  .rbtn{display:flex; align-items:center; justify-content:center; gap:6px; border-radius:11px; padding:11px 6px;
+    font-size:14px; font-weight:800; color:#fff; line-height:1.2;}
+  .rbtn small{font-weight:900; background:rgba(255,255,255,.25); border-radius:7px; padding:0 6px;}
+  .r-hw{background:#155E92;}     /* واجبات */
+  .r-disc{background:#0E7C6B;}   /* التزام */
+  .r-part{background:#8A5A9E;}   /* مشاركة */
+  .r-exc{background:#C9820A;}    /* تميز */
+  .r-minus{background:#fff; color:var(--red); border:1.5px solid #E8C9C6;}
+  .strow3{display:flex; gap:8px; flex-wrap:wrap;}
+  .tool-sm{display:inline-flex; align-items:center; gap:6px; border-radius:10px; padding:9px 14px; font-size:14px; font-weight:800;}
+  .t-photo{background:var(--gold); color:#3A2C00;}
+  .t-delph{background:#FDECEC; color:var(--red);}
+  .t-del{background:#fff; border:1.5px solid #E8C9C6; color:var(--red);}
 
-.honor-head{text-align:center;margin-bottom:26px}
-.honor-head h2{font-size:24px;font-weight:900;display:inline-flex;align-items:center;gap:10px}
-.honor-head h2 .em{color:var(--gold)}
-.honor-head p{color:var(--muted);font-size:14px;margin-top:6px}
-.sub-tabs{display:flex;justify-content:center;gap:6px;border-bottom:1px solid var(--line);margin-bottom:24px;flex-wrap:wrap}
-.sub-tabs button{font-size:14.5px;font-weight:800;color:var(--muted);padding:11px 20px;display:flex;align-items:center;gap:7px;border-bottom:3px solid transparent;margin-bottom:-1px}
-.sub-tabs button.active{color:var(--green-800);border-color:var(--green-700)}
-.rank-search{max-width:720px;margin:0 auto 16px}
-.rank-search input{width:100%;font-family:inherit;font-size:14.5px;font-weight:700;color:var(--ink);padding:12px 16px;border:1px solid var(--line);border-radius:12px;background:#fff;box-shadow:var(--shadow)}
-.rank-search input:focus{outline:2px solid var(--green-100);border-color:var(--green-700)}
-.rank-list{max-width:720px;margin:0 auto}
-.rank{background:var(--card);border-radius:14px;box-shadow:var(--shadow);padding:14px 18px;margin-bottom:12px;display:flex;align-items:center;gap:14px;transition:transform .15s}
-.rank:hover{transform:translateY(-2px)}
-.medal{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;flex-shrink:0;background:#f1f5f3;color:#5d746c;border:2px solid var(--line)}
-.medal.m1{background:var(--gold-light);border-color:var(--gold);font-size:22px}
-.medal.m2{background:#eef1f4;border-color:#b9c4cc;font-size:22px}
-.medal.m3{background:#faeee1;border-color:#d8a468;font-size:22px}
-.rank-info{flex:1}
-.rank-info .nm{font-weight:900;font-size:15.5px}
-.rank-info .sub{color:var(--muted);font-size:12.5px;margin-top:2px}
-.meter{height:6px;background:#eef2f0;border-radius:6px;margin-top:8px;overflow:hidden}
-.meter i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--green-700),var(--gold));transition:width .8s ease}
-.rank-pts{background:#e2f5e9;color:#1a7a43;font-weight:900;font-size:14px;padding:6px 14px;border-radius:10px;white-space:nowrap}
+  .pinbar{display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; padding-top:14px; border-top:1px dashed #D8D2C4;}
 
-.admin-note{background:var(--gold-light);border:1px solid #f0d9a4;border-radius:var(--radius);padding:14px 18px;font-size:14px;color:#6b5000;line-height:1.9;margin-bottom:20px}
-.admin-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
-.admin-tabs button{background:#fff;border:1px solid var(--line);color:var(--muted);font-weight:800;font-size:13.5px;padding:9px 18px;border-radius:11px}
-.admin-tabs button.active{background:var(--green-800);color:#fff;border-color:var(--green-800)}
-.edit-table{width:100%}
-.edit-row{background:var(--card);border-radius:12px;box-shadow:var(--shadow);padding:12px 14px;margin-bottom:10px;display:grid;grid-template-columns:2fr 2fr 90px 90px 44px;gap:10px;align-items:center}
-.edit-row.head{background:transparent;box-shadow:none;padding:0 14px;font-size:12.5px;font-weight:800;color:var(--muted)}
-.edit-row input{font-family:inherit;font-size:13.5px;font-weight:700;padding:9px 11px;border:1px solid var(--line);border-radius:9px;width:100%;background:#fbfdfc}
-.edit-row input:focus{outline:2px solid var(--green-100);border-color:var(--green-700)}
-.edit-row input.num-in{text-align:center}
-.del-btn{width:38px;height:38px;border-radius:10px;background:#fdecec;color:#c0392b;font-size:16px;font-weight:900}
-.del-btn:hover{background:#f8d7d7}
-.admin-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-.add-row-btn{background:#fff;border:1.5px dashed var(--green-700);color:var(--green-800);font-weight:800;font-size:13.5px;padding:10px 18px;border-radius:11px}
-.add-row-btn:hover{background:var(--green-50)}
-.save-btn{background:var(--green-800);color:#fff;font-weight:800;font-size:14px;padding:10px 26px;border-radius:11px;box-shadow:0 3px 10px rgba(18,80,60,.3)}
-.save-btn:hover{background:var(--green-700)}
-.reset-btn{background:#eef2f0;color:#4a635b;font-weight:800;font-size:13.5px;padding:10px 18px;border-radius:11px}
-.saved-msg{display:none;background:#e2f5e9;color:#1a7a43;font-weight:800;font-size:13.5px;padding:10px 18px;border-radius:11px}
-.saved-msg.show{display:inline-flex;align-items:center;gap:6px}
-.init-edit-row{grid-template-columns:2.2fr 1.6fr 90px 110px 44px}
-@media(max-width:760px){
-  .edit-row,.init-edit-row{grid-template-columns:1fr 1fr;grid-auto-rows:auto}
-  .edit-row.head{display:none}
-}
+  .overlay{position:fixed; inset:0; background:rgba(10,30,49,.6); display:none; align-items:center; justify-content:center; padding:16px; z-index:50;}
+  .overlay.show{display:flex;}
+  .modal{background:#fff; border-radius:18px; padding:26px; width:100%; max-width:360px; text-align:center; border-top:5px solid var(--gold);}
+  .modal input{width:100%; padding:12px; border-radius:10px; border:2px solid #CBC4B2; font-size:20px; text-align:center; letter-spacing:6px; margin-top:14px;}
+  .modal .err{color:var(--red); font-size:13.5px; margin-top:8px; font-weight:800; min-height:18px;}
+  .modal .acts{display:flex; gap:8px; margin-top:16px;}
+  .modal .acts button{flex:1; padding:12px; border-radius:10px; font-size:15.5px; font-weight:900;}
 
-.overlay{position:fixed;inset:0;background:rgba(11,61,46,.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
-.overlay.open{display:flex}
-.modal{background:#fff;border-radius:18px;max-width:520px;width:100%;padding:26px;box-shadow:0 20px 60px rgba(0,0,0,.25);max-height:90vh;overflow-y:auto}
-.modal h3{font-size:18px;font-weight:900;margin-bottom:18px;color:var(--green-900)}
-.modal label{display:block;font-size:13px;font-weight:800;margin-bottom:6px;color:#3c5b51}
-.modal input,.modal select,.modal textarea{width:100%;font-family:inherit;font-size:14px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin-bottom:14px}
-.modal textarea{resize:vertical;min-height:70px}
-.modal .actions{display:flex;gap:10px}
-.modal .save{background:var(--green-800);color:#fff;font-weight:800;padding:10px 22px;border-radius:11px}
-.modal .cancel{background:#eef2f0;color:#4a635b;font-weight:800;padding:10px 22px;border-radius:11px}
-
-#confetti{position:fixed;inset:0;pointer-events:none;z-index:99}
-
-footer{background:var(--green-900);color:#cfe6da;text-align:center;font-size:13px;padding:18px 4vw;line-height:1.9}
-footer b{color:var(--gold)}
-@media(max-width:640px){
-  .brand h1{font-size:17px}
-  nav.tabs button{font-size:13px;padding:12px 10px}
-  .init-card{grid-template-columns:1fr}
-  .init-pts{border-inline-start:none;border-top:1px solid var(--line);padding-top:10px;flex-direction:row;justify-content:center}
-}
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation:none!important;transition:none!important}
-}
+  #toast{position:fixed; bottom:20px; right:50%; transform:translateX(50%); background:var(--navy); color:#fff;
+    border-radius:999px; padding:11px 24px; font-size:14.5px; font-weight:800; box-shadow:0 6px 20px rgba(0,0,0,.25);
+    z-index:60; display:none; max-width:92vw; text-align:center;}
+  footer{text-align:center; margin-top:26px; font-size:13.5px; font-weight:700; color:var(--silver); line-height:1.9;}
 </style>
 </head>
 <body>
 
-<header class="top">
-  <div class="top-row">
-    <div class="brand">
-      <div class="logo">📗</div>
-      <div>
-        <div class="kicker">المملكة العربية السعودية • إدارة التعليم بمحافظة ينبع</div>
-        <h1>مدرسة أبي بكر الرازي الابتدائية بينبع</h1>
-        <span class="badge">لوحة النقاط والتحفيز</span><span class="badge date-badge" id="today-badge"></span>
-      </div>
+<header>
+  <div class="head-inner">
+    <svg viewBox="0 0 100 115" width="56" height="64" aria-hidden="true">
+      <path d="M50 4 L92 18 V58 C92 84 74 102 50 111 C26 102 8 84 8 58 V18 Z" fill="#C9A227" stroke="#0A1E31" stroke-width="3"/>
+      <path d="M50 14 L82 25 V57 C82 77 68 92 50 100 C32 92 18 77 18 57 V25 Z" fill="rgba(255,255,255,.22)"/>
+      <text x="50" y="70" text-anchor="middle" font-size="38">⚔️</text>
+    </svg>
+    <div>
+      <h1>فرسان العلوم</h1>
+      <div class="subtitle">الصف الرابع الابتدائي • مدرسة أبي بكر الرازي الابتدائية بينبع</div>
     </div>
-    <button class="portal-btn" id="portal-btn" onclick="portalClick()">🔑 دخول بوابة المدرسة</button>
   </div>
-  <nav class="tabs">
-    <button class="active" data-view="dash">🏆 لوحة التحفيز</button>
-    <button data-view="log">📄 سجل المبادرات العام</button>
-    <button data-view="honor">🥇 لوحة الشرف والترتيب</button>
-    <button data-view="admin">⚙️ الإدارة والتعديل</button>
-  </nav>
+  <div class="head-btns">
+    <button class="hbtn" id="btnTeacher">🔑 دخول المعلم</button>
+    <button class="hbtn" id="btnExit" style="display:none">خروج</button>
+  </div>
+  <div id="netState">⏳ جارٍ الاتصال بقاعدة البيانات...</div>
 </header>
 
 <main>
+  <section id="managePanel" class="card" style="display:none">
+    <h2 class="h2-line">🔧 إدارة الفرسان</h2>
 
-<section class="view active" id="view-dash">
-  <div class="welcome">
-    <p>ⓘ أهلاً بك في منصة التحفيز لمدرسة أبي بكر الرازي الابتدائية بينبع! بإمكان الجميع الاطلاع على مسيرة الإنجازات وسجلات الشرف مباشرة وتشجيع فرسان التميز.</p>
-    <button class="login-btn" onclick="goView('admin')">🖊 تسجيل الدخول للمشاركة</button>
-  </div>
-  <div class="stats">
-    <div class="stat"><div><div class="label">إجمالي الطلاب المشمولين</div><div class="num" id="stat-students">0</div></div><div class="ic g">🎓</div></div>
-    <div class="stat"><div><div class="label">إجمالي المعلمين المشاركين</div><div class="num" id="stat-teachers">0</div></div><div class="ic o">👤</div></div>
-    <div class="stat"><div><div class="label">المشاركات والأنشطة الإجمالية</div><div class="num" id="stat-inits">0</div></div><div class="ic b">📄</div></div>
-    <div class="stat"><div><div class="label">إجمالي النقاط الممنوحة</div><div class="num" id="stat-points">0</div></div><div class="ic o">🏆</div></div>
-  </div>
-  <div class="podiums">
-    <div class="podium-card">
-      <div class="podium-head">
-        <h2><span class="em">🏆</span> أوائل فرسان التميز (الطلاب)</h2>
-        <button class="view-all" onclick="goHonor('students')">‹ عرض القائمة كاملة</button>
+    <div class="secmgr">
+      <div class="ttl">🏫 الفصول</div>
+      <div class="list" id="secList"></div>
+      <div class="addrow">
+        <input id="newSecName" placeholder="اسم فصل جديد... مثال: 4/د">
+        <button class="btn btn-teal" id="btnAddSec">+ إضافة فصل</button>
       </div>
-      <div class="podium" id="podium-students"></div>
     </div>
-    <div class="podium-card">
-      <div class="podium-head">
-        <h2><span class="em">🎖</span> رواد الإلهام والمبادرات (المعلمون)</h2>
-        <button class="view-all" onclick="goHonor('teachers')">‹ عرض القائمة كاملة</button>
-      </div>
-      <div class="podium" id="podium-teachers"></div>
+
+    <div class="addbar">
+      <input id="newName" placeholder="اسم الطالب كاملاً...">
+      <select id="newSection"></select>
+      <button class="btn btn-teal" id="btnAdd">+ إضافة فارس</button>
     </div>
-  </div>
-</section>
 
-<section class="view" id="view-log">
-  <div class="section-head">
-    <h2><span class="em">📄</span> سجل المبادرات والمشاركات العام</h2>
-    <button class="add-btn" onclick="openModal()">＋ إضافة مشاركة جديدة</button>
-  </div>
-  <div class="filters">
-    <select id="f-type" onchange="renderLog()">
-      <option value="">جميع أنواع المشاركات</option>
-      <option>مشروع علمي متكامل</option>
-      <option>مبادرة تطوعية مدرسية</option>
-      <option>تقديم درس تطبيقي نموذجي</option>
-      <option>مسابقة علمية</option>
-      <option>نشاط إذاعي وتوعوي</option>
-    </select>
-    <select id="f-status" onchange="renderLog()">
-      <option value="">جميع حالات الموافقات</option>
-      <option value="ok">معتمد ومضاف</option>
-      <option value="wait">قيد المراجعة</option>
-    </select>
-  </div>
-  <div id="log-list"></div>
-</section>
+    <div id="manageList"></div>
 
-<section class="view" id="view-honor">
-  <div class="honor-head">
-    <h2><span class="em">🏆</span> لوحة الشرف لمدرسة أبي بكر الرازي الابتدائية بينبع</h2>
-    <p>لوحة الصدارة والترتيب الرقمي المباشر لجميع منسوبي المدرسة من فرسان ونخبة</p>
-  </div>
-  <div class="sub-tabs">
-    <button class="active" data-sub="students">🎓 ترتيب الطلاب</button>
-    <button data-sub="teachers">👤 ترتيب المعلمين</button>
-    <button data-sub="classes">🏫 تنافس الفصول</button>
-  </div>
-  <div class="rank-search"><input id="rank-q" placeholder="🔍 ابحث عن اسم في لوحة الشرف..." oninput="renderRanks()"></div>
-  <div class="rank-list" id="rank-list"></div>
-</section>
-
-<section class="view" id="view-admin">
-  <div class="section-head">
-    <h2><span class="em">⚙️</span> لوحة الإدارة والتعديل</h2>
-  </div>
-  <div class="admin-note">
-    ✏️ من هنا تستطيع تعديل الأسماء والنقاط مباشرة دون لمس الكود: اكتب في الحقول، أضف صفوفًا جديدة أو احذفها، ثم اضغط <b>«حفظ التعديلات»</b> ليتم تحديث جميع اللوحات فورًا مع حفظ البيانات تلقائيًا لجميع الزوار.
-  </div>
-  <div class="admin-tabs">
-    <button class="active" data-atab="students">🎓 الطلاب</button>
-    <button data-atab="teachers">👤 المعلمون</button>
-    <button data-atab="classes">🏫 الفصول</button>
-    <button data-atab="inits">📄 المشاركات</button>
-  </div>
-  <div id="admin-area"></div>
-  <div class="admin-actions">
-    <button class="add-row-btn" onclick="addRow()">＋ إضافة صف جديد</button>
-    <button class="save-btn" onclick="saveAdmin()">💾 حفظ التعديلات</button>
-    <span class="saved-msg" id="saved-msg">✔ تم الحفظ وتحديث اللوحات</span>
-  </div>
-  <div style="margin-top:26px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;max-width:480px">
-    <div style="font-weight:900;font-size:15px;margin-bottom:10px">🔐 تغيير كلمة مرور البوابة</div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap">
-      <input id="new-pass" type="password" placeholder="كلمة المرور الجديدة" style="flex:1;min-width:180px;font-family:inherit;font-size:14px;padding:10px 12px;border:1px solid var(--line);border-radius:10px">
-      <button class="save-btn" onclick="changePass()">تحديث</button>
+    <div class="pinbar">
+      <button class="btn btn-navy" id="btnPin">🔒 تغيير الرمز</button>
     </div>
-    <span class="saved-msg" id="pass-msg" style="margin-top:10px">✔ تم تحديث كلمة المرور</span>
-  </div>
-</section>
+    <p style="font-size:13.5px; font-weight:700; color:var(--silver); margin-top:10px; line-height:1.8">
+      ✨ كل ضغطة زر تُحفظ فوراً وتظهر للجميع مباشرة — لا حاجة لتنزيل أو رفع أي ملفات.
+    </p>
+  </section>
 
+  <section id="podium" class="podium"></section>
+
+  <section class="card">
+    <div class="toolbar">
+      <h2 style="flex:1 1 auto; margin:0">🏅 لوحة الشرف</h2>
+      <input id="search" placeholder="🔍 ابحث عن اسم الفارس...">
+      <div id="chips" style="display:flex; gap:6px; flex-wrap:wrap"></div>
+    </div>
+    <div id="board"><div class="empty">⏳ جارٍ تحميل الفرسان...</div></div>
+    <div class="legend" id="legend"></div>
+    <div class="legend" style="border-top:none; margin-top:8px; padding-top:0">
+      <span style="background:#E8F1F9;color:#155E92">📘 حل الواجبات</span>
+      <span style="background:var(--teal-light);color:#0A5D50">🎯 الالتزام أثناء الحصة</span>
+      <span style="background:#F3EAF8;color:#8A5A9E">🙋 المشاركة الفعالة</span>
+      <span style="background:#FBF0DA;color:#9C6A08">🌟 تميز واختبارات</span>
+    </div>
+  </section>
+
+  <footer>
+    منصة فرسان العلوم — الصف الرابع الابتدائي • مدرسة أبي بكر الرازي الابتدائية بينبع<br>
+    إعداد المعلم: <b style="color:var(--gold)">أ. حمدان عمار المحياوي</b> • العام الدراسي 1448هـ
+  </footer>
 </main>
 
-<div class="overlay" id="overlay">
+<div class="overlay" id="pinOverlay">
   <div class="modal">
-    <h3>إضافة مشاركة جديدة</h3>
-    <label>عنوان المشاركة</label>
-    <input id="m-title" placeholder="مثال: معرض العلوم التفاعلي">
-    <label>نوع المشاركة</label>
-    <select id="m-type">
-      <option>مشروع علمي متكامل</option>
-      <option>مبادرة تطوعية مدرسية</option>
-      <option>تقديم درس تطبيقي نموذجي</option>
-      <option>مسابقة علمية</option>
-      <option>نشاط إذاعي وتوعوي</option>
-    </select>
-    <label>اسم المبادر</label>
-    <input id="m-owner" placeholder="الاسم الثلاثي">
-    <label>صفة المبادر</label>
-    <select id="m-role"><option>طالب بالمدرسة</option><option>معلم</option></select>
-    <label>وصف موجز</label>
-    <textarea id="m-desc" placeholder="وصف مختصر للمشاركة وأثرها"></textarea>
-    <label>مرفق المشاركة (اختياري — صورة أو ملف)</label>
-    <div class="att-box">
-      <button class="att-btn" type="button" onclick="pickInitFile()">📎 رفع صورة أو ملف</button>
-      <img class="att-prev" id="m-att-prev" alt="">
-      <span class="att-name" id="m-att-name"></span>
-      <button class="att-del" id="m-att-del" type="button" title="إزالة المرفق" onclick="clearInitFile()">✖</button>
-    </div>
-    <div class="actions">
-      <button class="save" onclick="saveInit()">حفظ وإرسال للاعتماد</button>
-      <button class="cancel" onclick="closeModal()">إلغاء</button>
+    <div style="font-size:40px">🔑</div>
+    <h3 style="margin:8px 0 4px; color:var(--navy); font-size:20px; font-weight:900" id="pinTitle">دخول المعلم</h3>
+    <p style="font-size:14px; font-weight:700; color:var(--silver)" id="pinDesc">أدخل الرمز السري للتعديل على المنصة</p>
+    <input type="password" inputmode="numeric" id="pinInput" placeholder="• • • •">
+    <div class="err" id="pinErr"></div>
+    <div class="acts">
+      <button id="pinOk" style="background:var(--teal); color:#fff">دخول</button>
+      <button id="pinCancel" style="background:#EEE9DD; color:var(--ink)">إلغاء</button>
     </div>
   </div>
 </div>
 
-<div class="overlay" id="login-overlay">
-  <div class="modal" style="max-width:420px">
-    <h3>🔑 دخول بوابة المدرسة</h3>
-    <p style="font-size:13.5px;color:var(--muted);line-height:1.9;margin-bottom:16px">هذه البوابة مخصصة للجنة التميز المدرسي لإدارة الأسماء والنقاط والمشاركات.</p>
-    <label>كلمة المرور</label>
-    <input id="login-pass" type="password" placeholder="أدخل كلمة المرور" onkeydown="if(event.key==='Enter')doLogin()">
-    <div id="login-err" style="display:none;background:#fdecec;color:#c0392b;font-size:13px;font-weight:800;padding:8px 12px;border-radius:9px;margin-bottom:14px">✖ كلمة المرور غير صحيحة، حاول مرة أخرى.</div>
-    <div class="actions">
-      <button class="save" onclick="doLogin()">دخول</button>
-      <button class="cancel" onclick="closeLogin()">إلغاء</button>
-    </div>
-  </div>
-</div>
-
-<input type="file" id="photo-input" accept="image/*" style="display:none">
-<input type="file" id="init-file-input" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx" style="display:none">
-<canvas id="confetti"></canvas>
-
-<footer>
-  منصة التحفيز والتميز — لجنة التميز المدرسي • مدرسة أبي بكر الرازي الابتدائية بينبع<br>
-  إشراف: قائد المدرسة <b>أ. أحمد شديد الرفاعي</b> مشرف لجنة التميز <b>أ. فهد حمود الميموني</b> • تصميم وتنفيذ : <b>أ. حمدان عمار المحياوي</b> — العام الدراسي 1448هـ
-</footer>
+<div id="toast"></div>
+<input type="file" accept="image/*" id="photoFile" style="display:none">
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 <script>
-/* ====== ربط Firebase (قاعدة البيانات المشتركة لجميع الزوار) ====== */
+/* ═══ ربط Firebase — نفس قاعدة منصة التميز، قسم مستقل "forsan" ═══ */
 const firebaseConfig = {
   apiKey: "AIzaSyBfYecxpWH-0TMCRAWGQMsIrj4ImhcEUAk",
   authDomain: "razi-platform.firebaseapp.com",
@@ -386,458 +226,342 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
+const ROOT = "forsan";
 
-const DEFAULTS={
-students:[
- {n:"خالد بن وليد الحربي",g:"الصف الخامس - أ",p:20,c:4},
- {n:"أحمد بن عبد الله المطيري",g:"الصف الخامس - أ",p:18,c:4},
- {n:"عبد الرحمن بن علي القحطاني",g:"الصف الرابع - أ",p:15,c:3},
- {n:"فيصل بن محمد الشهري",g:"الصف الرابع - ب",p:14,c:3},
- {n:"يوسف بن صالح السبيعي",g:"الصف الخامس - ب",p:12,c:2},
- {n:"عبد الله بن خالد المري",g:"الصف الرابع - أ",p:11,c:2},
- {n:"سلطان بن فهد الجهني",g:"الصف الخامس - أ",p:9,c:2},
- {n:"ماجد بن سعد العنزي",g:"الصف الرابع - ب",p:7,c:1}
-],
-teachers:[
- {n:"أ. حمدان عمار المحياوي",g:"معلم العلوم — مقرر لجنة التميز",p:25,c:5},
- {n:"أ. فهد العتيبي",g:"معلم الرياضيات",p:20,c:4},
- {n:"أ. سالم الجهني",g:"معلم اللغة العربية",p:17,c:3},
- {n:"أ. ناصر الرشيدي",g:"معلم التربية الإسلامية",p:14,c:3},
- {n:"أ. بدر الصاعدي",g:"معلم الدراسات الاجتماعية",p:11,c:2},
- {n:"أ. عمر البلوي",g:"معلم التربية البدنية",p:8,c:2}
-],
-classes:[
- {n:"الصف الخامس - أ",g:"رائد الفصل: أ. حمدان المحياوي",p:47,c:8},
- {n:"الصف الرابع - أ",g:"رائد الفصل: أ. فهد العتيبي",p:26,c:5},
- {n:"الصف الرابع - ب",g:"رائد الفصل: أ. سالم الجهني",p:21,c:4},
- {n:"الصف الخامس - ب",g:"رائد الفصل: أ. ناصر الرشيدي",p:12,c:2}
-],
-inits:[
- {t:"معرض العلوم التفاعلي وتجارب الطاقة المتجددة",type:"مشروع علمي متكامل",d:"2026-07-15",desc:"مشروع ريادي أشرف عليه معلم العلوم شمل تجارب عملية للطاقة الشمسية وطاقة الرياح بمشاركة طلاب الصفين الرابع والخامس.",o:"أ. حمدان عمار المحياوي",r:"أستاذ متميز",p:5,s:"ok"},
- {t:"حملة النظافة والمحافظة على الممتلكات العامة",type:"مبادرة تطوعية مدرسية",d:"2026-07-16",desc:"قيادة حملة تطوعية شملت تنظيف فناء المدرسة وتزيين ممرات الصفوف بلوحات توعوية.",o:"أحمد بن عبد الله المطيري",r:"طالب بالمدرسة",p:3,s:"ok"},
- {t:"درس تطبيقي متميز باستخدام تقنيات الذكاء الاصطناعي",type:"تقديم درس تطبيقي نموذجي",d:"2026-07-17",desc:"درس نموذجي في مادة العلوم للصف الخامس وُظفت فيه أدوات الذكاء الاصطناعي في العرض والتقويم.",o:"أ. حمدان عمار المحياوي",r:"أستاذ متميز",p:4,s:"ok"},
- {t:"أولمبياد العلوم المدرسي للصفوف العليا",type:"مسابقة علمية",d:"2026-07-18",desc:"مسابقة علمية تنافسية بين فصول الصفين الرابع والخامس لقياس المهارات العلمية والاستقصائية.",o:"خالد بن وليد الحربي",r:"طالب بالمدرسة",p:4,s:"ok"},
- {t:"إذاعة مدرسية توعوية عن ترشيد استهلاك المياه",type:"نشاط إذاعي وتوعوي",d:"2026-07-19",desc:"فقرة إذاعية متكاملة عن أهمية ترشيد المياه في بيئة ينبع تضمنت مشاهد تمثيلية ومسابقة صباحية.",o:"عبد الرحمن بن علي القحطاني",r:"طالب بالمدرسة",p:3,s:"ok"},
- {t:"مبادرة الحديقة الصفية وزراعة النباتات المحلية",type:"مبادرة تطوعية مدرسية",d:"2026-07-20",desc:"إنشاء ركن زراعي تعليمي بمشاركة الطلاب لزراعة نباتات البيئة المحلية وربطها بدروس العلوم.",o:"فيصل بن محمد الشهري",r:"طالب بالمدرسة",p:3,s:"wait"}
-]};
+/* ═══ أسباب النقاط ═══ */
+const REASONS = {
+  hw:   {label:"حل الواجبات",        icon:"📘", pts:5,  cls:"r-hw"},
+  disc: {label:"الالتزام في الحصة",   icon:"🎯", pts:5,  cls:"r-disc"},
+  part: {label:"مشاركة فعالة",        icon:"🙋", pts:5,  cls:"r-part"},
+  exc:  {label:"تميز / اختبار",       icon:"🌟", pts:10, cls:"r-exc"},
+};
 
-let DATA=JSON.parse(JSON.stringify(DEFAULTS));
-let PASS="1448";
-let loggedIn=false;
-let firebaseReady=false;
+/* ═══ الرتب ═══ */
+const RANKS = [
+  {min:300, name:"قائد الفرسان", color:"#9C7A08", bg:"#FFF8E1", icon:"👑"},
+  {min:200, name:"فارس ذهبي",   color:"#9C6A08", bg:"#FDF3D7", icon:"🥇"},
+  {min:100, name:"فارس فضي",    color:"#51626F", bg:"#EEF2F6", icon:"🥈"},
+  {min:0,   name:"فارس مبتدئ",  color:"#8F5A38", bg:"#F6ECE4", icon:"🛡️"},
+];
+const rankOf = p => RANKS.find(r => p >= r.min) || RANKS[RANKS.length-1];
 
-/* ====== التاريخ الهجري في الترويسة ====== */
-try{
-  const h=new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(new Date());
-  document.getElementById("today-badge").textContent="🗓 "+h;
-}catch(e){document.getElementById("today-badge").style.display="none"}
+let PIN = "1234";
+let STUDENTS = {};
+let SECTIONS = ["4/أ","4/ب","4/ج"];
+let teacher = false;
+let sectionFilter = "الكل";
+let photoTargetId = null;
+let connected = false;
 
-function normalizeList(v){
-  if(!v)return[];
-  return Array.isArray(v)?v.filter(Boolean):Object.values(v);
+const $ = id => document.getElementById(id);
+function toast(msg){
+  const t = $("toast"); t.textContent = msg; t.style.display = "block";
+  clearTimeout(t._h); t._h = setTimeout(()=> t.style.display="none", 2600);
 }
-function normalizeData(d){
-  return{
-    students:normalizeList(d&&d.students),
-    teachers:normalizeList(d&&d.teachers),
-    classes:normalizeList(d&&d.classes),
-    inits:normalizeList(d&&d.inits)
-  };
-}
-function isEditingAdmin(){
-  return loggedIn&&document.getElementById("view-admin").classList.contains("active");
-}
+function esc(s){ return String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function normList(v){ return !v ? [] : (Array.isArray(v) ? v.filter(Boolean) : Object.values(v)); }
 
-/* الاستماع المباشر: أي تحديث في القاعدة يظهر لكل الزوار فورًا */
-db.ref("platform").on("value",snap=>{
-  const val=snap.val();
-  if(!val||!val.data){
-    /* أول تشغيل: زرع البيانات الافتراضية في القاعدة */
-    db.ref("platform").set({data:DEFAULTS,pass:PASS});
+/* ═══ الاستماع المباشر ═══ */
+db.ref(ROOT).on("value", snap => {
+  const val = snap.val();
+  if (!val) {
+    db.ref(ROOT).set({ pin: PIN, sections: SECTIONS, students: {} });
     return;
   }
-  firebaseReady=true;
-  if(val.pass)PASS=String(val.pass);
-  if(!isEditingAdmin()){
-    DATA=normalizeData(val.data);
-    renderAll();
+  if (val.pin) PIN = String(val.pin);
+  SECTIONS = normList(val.sections);
+  if (SECTIONS.length === 0) SECTIONS = ["4/أ"];
+  STUDENTS = val.students || {};
+  if (!connected){
+    connected = true;
+    $("netState").textContent = "🟢 متصل — التحديثات تظهر للجميع مباشرة";
   }
-},err=>{
-  console.error("Firebase read error:",err);
+  render();
+}, err => {
+  console.error(err);
+  $("netState").textContent = "⚠️ تعذر الاتصال — تحقق من الإنترنت";
 });
 
-function portalClick(){
-  if(loggedIn){
-    loggedIn=false;
-    document.getElementById("portal-btn").textContent="🔑 دخول بوابة المدرسة";
-    goView("dash");
-  }else{
-    openLogin();
-  }
+function list(){ return Object.values(STUDENTS); }
+function sorted(){ return list().sort((a,b)=> (b.points||0) - (a.points||0)); }
+function avatarHTML(st, size, ring){
+  return `<div class="avatar" style="width:${size}px;height:${size}px;border-color:${ring}">
+    ${st.img ? `<img src="${st.img}" alt="${esc(st.name)}">` : `<span style="font-size:${size*.45}px">🛡️</span>`}
+  </div>`;
 }
-function openLogin(){
-  document.getElementById("login-err").style.display="none";
-  document.getElementById("login-pass").value="";
-  document.getElementById("login-overlay").classList.add("open");
-  setTimeout(()=>document.getElementById("login-pass").focus(),100);
-}
-function closeLogin(){document.getElementById("login-overlay").classList.remove("open")}
-function doLogin(){
-  if(document.getElementById("login-pass").value===PASS){
-    loggedIn=true;
-    closeLogin();
-    document.getElementById("portal-btn").textContent="🔓 تسجيل الخروج";
-    goView("admin");
-  }else{
-    document.getElementById("login-err").style.display="block";
-  }
-}
-async function changePass(){
-  const v=document.getElementById("new-pass").value.trim();
-  if(v.length<4){alert("فضلاً اختر كلمة مرور من 4 خانات فأكثر.");return}
-  PASS=v;
-  const m=document.getElementById("pass-msg");
-  try{
-    await db.ref("platform/pass").set(v);
-    m.textContent="✔ تم تحديث كلمة المرور وحفظها بشكل دائم";
-    m.style.background="#e2f5e9";m.style.color="#1a7a43";
-  }catch(e){
-    m.textContent="⚠ تعذر الحفظ — تحقق من الاتصال بالإنترنت وحاول مجددًا";
-    m.style.background="#fdf3dd";m.style.color="#a77410";
-  }
-  document.getElementById("new-pass").value="";
-  m.classList.add("show");setTimeout(()=>m.classList.remove("show"),4000);
+function badgesHTML(st){
+  const s = st.stats || {};
+  const parts = Object.keys(REASONS)
+    .filter(k => s[k] > 0)
+    .map(k => `<span title="${REASONS[k].label}">${REASONS[k].icon} ${s[k]}</span>`);
+  return parts.length ? `<div class="badges">${parts.join("")}</div>` : "";
 }
 
-async function persist(){
-  try{
-    await db.ref("platform/data").set(DATA);
-    return true;
-  }catch(e){
-    console.error("Firebase write error:",e);
-    return false;
+function render(){
+  const srt = sorted();
+
+  /* منصة التتويج */
+  const top3 = srt.slice(0,3);
+  const pod = $("podium");
+  if (top3.length === 0 || (teacher && $("managePanel").style.display !== "none")) {
+    pod.innerHTML = "";
+  } else {
+    const order = [top3[1], top3[0], top3[2]].filter(Boolean);
+    pod.innerHTML = order.map(s=>{
+      const place = s===top3[0]?1 : s===top3[1]?2 : 3;
+      const h = place===1?150 : place===2?118 : 100;
+      const medal = place===1?"👑" : place===2?"🥈" : "🥉";
+      const bg = place===1 ? "linear-gradient(180deg,#C9A227,#A8861D)" : "linear-gradient(180deg,#0F2A43,#0A1E31)";
+      const ring = place===1 ? "#C9A227" : "#8C9BAA";
+      return `<div class="pod">
+        ${avatarHTML(s, place===1?74:60, ring)}
+        <div style="font-size:23px;margin-top:4px">${medal}</div>
+        <div class="pod-name">${esc(s.name)}</div>
+        <div class="pod-bar" style="height:${h}px;background:${bg}">
+          <div class="pts">${s.points||0}</div><div class="lbl">نقطة</div>
+        </div>
+      </div>`;
+    }).join("");
   }
+
+  /* الفلاتر */
+  const secs = ["الكل", ...SECTIONS];
+  $("chips").innerHTML = secs.map(sec=>
+    `<button class="chip ${sec===sectionFilter?'on':''}" data-sec="${esc(sec)}">${esc(sec)}</button>`).join("");
+  $("chips").querySelectorAll("button").forEach(b=>
+    b.onclick = ()=>{ sectionFilter = b.dataset.sec; render(); });
+
+  /* لوحة الشرف */
+  const q = $("search").value.trim();
+  const filtered = srt.filter(s =>
+    (sectionFilter==="الكل" || s.section===sectionFilter) && String(s.name).includes(q));
+  const board = $("board");
+  if (!connected) {
+    board.innerHTML = `<div class="empty">⏳ جارٍ تحميل الفرسان...</div>`;
+  } else if (filtered.length === 0) {
+    board.innerHTML = `<div class="empty">${list().length===0 ?
+      "ستظهر أسماء الفرسان هنا قريباً بإذن الله 🛡️" : "لا توجد نتائج مطابقة للبحث."}</div>`;
+  } else {
+    board.innerHTML = filtered.map(s=>{
+      const r = rankOf(s.points||0);
+      const place = srt.indexOf(s)+1;
+      return `<div class="row" style="background:${r.bg};border-right:5px solid ${r.color}">
+        <div class="place">${place}</div>
+        ${avatarHTML(s, 50, r.color)}
+        <div class="info">
+          <div class="nm">${esc(s.name)}</div>
+          <div class="rk" style="color:${r.color}">${r.icon} ${r.name} • ${esc(s.section)}</div>
+          ${badgesHTML(s)}
+        </div>
+        <div class="pts"><div class="n">${s.points||0}</div><div class="u">نقطة</div></div>
+      </div>`;
+    }).join("");
+  }
+
+  $("legend").innerHTML = RANKS.slice().reverse().map(r=>
+    `<span style="color:${r.color};background:${r.bg}">${r.icon} ${r.name} (${r.min}+)</span>`).join("");
+
+  if (teacher) renderManage();
 }
 
-document.querySelectorAll("nav.tabs button").forEach(b=>{
-  b.onclick=()=>goView(b.dataset.view);
-});
-function goView(v){
-  if(v==="admin"&&!loggedIn){openLogin();return}
-  document.querySelectorAll("nav.tabs button").forEach(x=>x.classList.toggle("active",x.dataset.view===v));
-  document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));
-  document.getElementById("view-"+v).classList.add("active");
-  if(v==="admin")renderAdmin();
-  if(v==="honor")celebrate();
-}
-function goHonor(sub){
-  goView("honor");
-  document.querySelector('.sub-tabs button[data-sub="'+sub+'"]').click();
-}
-
-/* ====== عدّاد متحرك للأرقام ====== */
-function animateNum(el,to){
-  const from=+el.dataset.v||0;
-  el.dataset.v=to;
-  if(from===to||matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=to;return}
-  const t0=performance.now(),dur=900;
-  (function tick(t){
-    const k=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-k,3);
-    el.textContent=Math.round(from+(to-from)*e);
-    if(k<1)requestAnimationFrame(tick);
-  })(t0);
-}
-function renderStats(){
-  animateNum(document.getElementById("stat-students"),DATA.students.length);
-  animateNum(document.getElementById("stat-teachers"),DATA.teachers.length);
-  animateNum(document.getElementById("stat-inits"),DATA.inits.length);
-  animateNum(document.getElementById("stat-points"),DATA.inits.filter(i=>i.s==="ok").reduce((a,i)=>a+(+i.p||0),0));
-}
-function renderPodium(el,data,isStudents){
-  const top=[...data].sort((a,b)=>b.p-a.p).slice(0,3);
-  const order=[[top[1],"second","٢"],[top[0],"first","١"],[top[2],"third","٣"]];
-  el.innerHTML=order.filter(o=>o[0]).map(([x,cls,num])=>{
-    const idx=data.indexOf(x);
-    const visual=x.img
-      ?`<img class="photo46" src="${x.img}" alt="${esc(x.n)}">`
-      :`<div class="avatar">${cls==="first"?"👑":cls==="second"?"🥈":"🥉"}</div>`;
-    const cam=isStudents
-      ?`<button class="cam-btn ${x.img?"has":""}" title="رفع صورة الطالب (4×6)" onclick="pickPhoto(${idx})">📷</button>`
-      :"";
-    return `
-    <div class="step ${cls}">
-      ${visual}
-      <div class="name">${esc(x.n)}</div>
-      <div class="pts">${x.p} ن</div>
-      ${cam}
-      <div class="bar">${num}</div>
-    </div>`;
+/* ═══ لوحة الإدارة ═══ */
+function renderManage(){
+  /* الفصول */
+  $("secList").innerHTML = SECTIONS.map((sec,i)=>{
+    const used = list().some(s=>s.section===sec);
+    return `<span class="secchip">${esc(sec)}
+      <button title="${used?'لا يمكن حذف فصل فيه طلاب':'حذف الفصل'}" data-delsec="${i}" ${used?'style="opacity:.35"':''}>✖</button>
+    </span>`;
   }).join("");
-}
+  $("secList").querySelectorAll("[data-delsec]").forEach(b=> b.onclick = ()=>{
+    const i = +b.dataset.delsec;
+    const sec = SECTIONS[i];
+    if (list().some(s=>s.section===sec)){ toast("انقل طلاب الفصل أولاً قبل حذفه"); return; }
+    if (!confirm(`حذف الفصل "${sec}"؟`)) return;
+    const ns = SECTIONS.filter((_,x)=>x!==i);
+    db.ref(`${ROOT}/sections`).set(ns).catch(()=>toast("⚠️ تعذر الحفظ"));
+  });
 
-let pendingPhotoIdx=null;
-function pickPhoto(i){
-  if(!loggedIn){openLogin();return}
-  pendingPhotoIdx=i;
-  document.getElementById("photo-input").value="";
-  document.getElementById("photo-input").click();
-}
-function delPhoto(i){
-  if(!loggedIn){openLogin();return}
-  if(!confirm("هل تريد حذف صورة هذا الطالب؟"))return;
-  delete DATA.students[i].img;
-  persist();renderAll();
-  if(document.getElementById("view-admin").classList.contains("active"))renderAdmin();
-}
-document.getElementById("photo-input").addEventListener("change",function(){
-  const f=this.files&&this.files[0];
-  if(!f||pendingPhotoIdx==null)return;
-  const rd=new FileReader();
-  rd.onload=e=>{
-    const img=new Image();
-    img.onload=()=>{
-      const W=240,H=360;
-      const cv=document.createElement("canvas");cv.width=W;cv.height=H;
-      const cx=cv.getContext("2d");
-      const sr=img.width/img.height,tr=W/H;
-      let sx=0,sy=0,sw=img.width,sh=img.height;
-      if(sr>tr){sw=img.height*tr;sx=(img.width-sw)/2}
-      else{sh=img.width/tr;sy=(img.height-sh)/2}
-      cx.drawImage(img,sx,sy,sw,sh,0,0,W,H);
-      DATA.students[pendingPhotoIdx].img=cv.toDataURL("image/jpeg",.85);
-      pendingPhotoIdx=null;
-      persist();renderAll();
-      if(document.getElementById("view-admin").classList.contains("active"))renderAdmin();
-    };
-    img.src=e.target.result;
-  };
-  rd.readAsDataURL(f);
-});
+  const sel = $("newSection");
+  const cur = sel.value;
+  sel.innerHTML = SECTIONS.map(s=>`<option>${esc(s)}</option>`).join("");
+  if (SECTIONS.includes(cur)) sel.value = cur;
 
-/* ====== مرفق المشاركة الجديدة (صورة أو ملف) ====== */
-let pendingAtt=null;
-function pickInitFile(){
-  document.getElementById("init-file-input").value="";
-  document.getElementById("init-file-input").click();
-}
-function clearInitFile(){
-  pendingAtt=null;
-  document.getElementById("init-file-input").value="";
-  showAttUI();
-}
-function showAttUI(){
-  const prev=document.getElementById("m-att-prev"),nm=document.getElementById("m-att-name"),del=document.getElementById("m-att-del");
-  if(pendingAtt){
-    nm.textContent="📎 "+pendingAtt.name;nm.style.display="inline-flex";
-    del.style.display="inline-flex";
-    if(pendingAtt.isImg){prev.src=pendingAtt.data;prev.style.display="block"}
-    else{prev.style.display="none"}
-  }else{
-    nm.style.display="none";del.style.display="none";prev.style.display="none";
-  }
-}
-document.getElementById("init-file-input").addEventListener("change",function(){
-  const f=this.files&&this.files[0];
-  if(!f)return;
-  if(f.type.startsWith("image/")){
-    /* صورة: ضغط تلقائي حتى لا يثقل حجمها قاعدة البيانات */
-    const rd=new FileReader();
-    rd.onload=e=>{
-      const img=new Image();
-      img.onload=()=>{
-        const MAX=900;
-        let w=img.width,h=img.height;
-        if(w>MAX){h=Math.round(h*MAX/w);w=MAX}
-        const cv=document.createElement("canvas");cv.width=w;cv.height=h;
-        cv.getContext("2d").drawImage(img,0,0,w,h);
-        pendingAtt={name:f.name,isImg:true,data:cv.toDataURL("image/jpeg",.82)};
-        showAttUI();
-      };
-      img.src=e.target.result;
-    };
-    rd.readAsDataURL(f);
-  }else{
-    /* ملف (PDF / Word / Excel...): حد أقصى 1.5 ميجابايت */
-    if(f.size>1500000){alert("حجم الملف كبير — فضلاً اختر ملفًا أقل من 1.5 ميجابايت أو ارفع صورة بدلاً منه.");this.value="";return}
-    const rd=new FileReader();
-    rd.onload=e=>{pendingAtt={name:f.name,isImg:false,data:e.target.result};showAttUI()};
-    rd.readAsDataURL(f);
-  }
-});
-
-function renderLog(){
-  const ft=document.getElementById("f-type").value;
-  const fs=document.getElementById("f-status").value;
-  const list=DATA.inits.filter(i=>(!ft||i.type===ft)&&(!fs||i.s===fs));
-  document.getElementById("log-list").innerHTML=list.length?list.map(i=>`
-    <div class="init-card">
-      <div class="init-main">
-        <div class="meta-row"><span class="tag">${esc(i.type)}</span><span class="date">📅 ${esc(i.d)}</span></div>
-        <h3>${esc(i.t)}</h3>
-        <div class="desc">${esc(i.desc)}</div>
-        ${i.att?(i.att.isImg
-          ?`<a href="${i.att.data}" target="_blank" title="عرض صورة المرفق بالحجم الكامل"><img class="init-att-img" src="${i.att.data}" alt="مرفق المشاركة"></a>`
-          :`<a class="init-att-file" href="${i.att.data}" download="${esc(i.att.name)}">📎 ${esc(i.att.name)}</a>`):""}
-        <div class="owner">المبادر: <b>${esc(i.o)}</b> <span class="role">(${esc(i.r)})</span></div>
-        <span class="status ${i.s}">${i.s==="ok"?"✔ معتمد ومضاف":"⏳ قيد المراجعة"}</span>
+  /* الطلاب */
+  $("manageList").innerHTML = sorted().map(s=>`
+    <div class="stcard">
+      <div class="strow1">
+        ${avatarHTML(s, 52, "#0E7C6B")}
+        <div class="stname">
+          <div class="n">${esc(s.name)}</div>
+          <div class="s">${esc(s.section)} • ${rankOf(s.points||0).name}</div>
+        </div>
+        <div class="stpts"><div class="n">${s.points||0}</div><div class="u">نقطة</div></div>
       </div>
-      <div class="init-pts"><div class="lbl">النقاط</div>${+i.p>0?`<div class="val">+${i.p}</div>`:`<div style="font-size:12px;font-weight:800;color:#a77410;background:var(--gold-light);padding:4px 10px;border-radius:9px">⏳ قيد التقييم</div>`}</div>
-    </div>`).join(""):
-    '<div style="text-align:center;color:var(--muted);padding:40px">لا توجد مشاركات مطابقة لخيارات التصفية الحالية.</div>';
-}
-const medals=["🥇","🥈","🥉"];
-let currentSub="students";
-document.querySelectorAll(".sub-tabs button").forEach(b=>{
-  b.onclick=()=>{
-    document.querySelectorAll(".sub-tabs button").forEach(x=>x.classList.remove("active"));
-    b.classList.add("active");currentSub=b.dataset.sub;renderRanks();
-  };
-});
-function renderRanks(){
-  const data=currentSub==="students"?DATA.students:currentSub==="teachers"?DATA.teachers:DATA.classes;
-  const unit=currentSub==="classes"?"مشاركة معتمدة للفصل":"مشاركة معتمدة";
-  const q=(document.getElementById("rank-q").value||"").trim();
-  const sorted=[...data].sort((a,b)=>b.p-a.p);
-  const max=Math.max(1,sorted[0]?+sorted[0].p||1:1);
-  const rows=sorted.map((x,i)=>({x,i})).filter(o=>!q||String(o.x.n).includes(q));
-  document.getElementById("rank-list").innerHTML=rows.length?rows.map(({x,i})=>`
-    <div class="rank">
-      <div class="medal ${i<3?"m"+(i+1):""}">${i<3?medals[i]:i+1}</div>
-      <div class="rank-info">
-        <div class="nm">${esc(x.n)}</div>
-        <div class="sub">${esc(x.g)} • ${x.c} ${unit}</div>
-        <div class="meter"><i style="width:${Math.max(6,Math.round((+x.p||0)/max*100))}%"></i></div>
+      <div class="reasons">
+        ${Object.entries(REASONS).map(([k,r])=>`
+          <button class="rbtn ${r.cls}" data-award="${s.id}|${k}">${r.icon} ${r.label} <small>+${r.pts}</small></button>
+        `).join("")}
+        <button class="rbtn r-minus" data-minus="${s.id}">➖ خصم <small>−5</small></button>
       </div>
-      <div class="rank-pts">${x.p} نقطة</div>
-    </div>`).join(""):
-    '<div style="text-align:center;color:var(--muted);padding:40px">لا توجد نتائج مطابقة لبحثك.</div>';
-}
-function renderAll(){
-  renderStats();
-  renderPodium(document.getElementById("podium-students"),DATA.students,true);
-  renderPodium(document.getElementById("podium-teachers"),DATA.teachers,false);
-  renderLog();renderRanks();
-}
-function esc(s){return String(s??"").replace(/[<>&"]/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[c]))}
+      <div class="strow3">
+        <button class="tool-sm t-photo" data-photo="${s.id}">📷 ${s.img?"تغيير الصورة":"رفع صورة"}</button>
+        ${s.img?`<button class="tool-sm t-delph" data-delph="${s.id}">✖ حذف الصورة</button>`:""}
+        <button class="tool-sm t-del" data-del="${s.id}">🗑️ حذف الفارس</button>
+      </div>
+    </div>`).join("");
 
-/* ====== قصاصات احتفالية بألوان الهوية ====== */
-function celebrate(){
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  const cv=document.getElementById("confetti"),cx=cv.getContext("2d");
-  cv.width=innerWidth;cv.height=innerHeight;
-  const colors=["#e8a020","#c9820a","#17614a","#0b3d2e","#fdf3dd","#e6f3ec"];
-  const ps=Array.from({length:130},()=>({
-    x:Math.random()*cv.width,y:-20-Math.random()*cv.height*.4,
-    r:4+Math.random()*5,c:colors[Math.random()*colors.length|0],
-    v:2+Math.random()*3,a:Math.random()*Math.PI,s:Math.random()<.5?1:-1
-  }));
-  const t0=performance.now();
-  (function tick(t){
-    cx.clearRect(0,0,cv.width,cv.height);
-    ps.forEach(p=>{
-      p.y+=p.v;p.x+=Math.sin(p.a+=.05)*1.4;
-      cx.save();cx.translate(p.x,p.y);cx.rotate(p.a*p.s);
-      cx.fillStyle=p.c;cx.fillRect(-p.r/2,-p.r,p.r,p.r*1.6);cx.restore();
-    });
-    if(t-t0<2600)requestAnimationFrame(tick);
-    else cx.clearRect(0,0,cv.width,cv.height);
-  })(t0);
+  $("manageList").querySelectorAll("[data-award]").forEach(b=> b.onclick = ()=>{
+    const [id, k] = b.dataset.award.split("|");
+    const st = STUDENTS[id]; if (!st) return;
+    const r = REASONS[k];
+    const stats = st.stats || {};
+    db.ref(`${ROOT}/students/${id}`).update({
+      points: Math.max(0,(st.points||0) + r.pts),
+      ["stats/"+k]: (stats[k]||0) + 1
+    })
+    .then(()=> toast(`${r.icon} ${r.label} +${r.pts} — ${st.name}`))
+    .catch(()=> toast("⚠️ تعذر الحفظ — تحقق من الإنترنت"));
+  });
+  $("manageList").querySelectorAll("[data-minus]").forEach(b=> b.onclick = ()=>{
+    const st = STUDENTS[b.dataset.minus]; if (!st) return;
+    db.ref(`${ROOT}/students/${st.id}/points`).set(Math.max(0,(st.points||0)-5))
+      .catch(()=> toast("⚠️ تعذر الحفظ"));
+  });
+  $("manageList").querySelectorAll("[data-del]").forEach(b=> b.onclick = ()=>{
+    const st = STUDENTS[b.dataset.del];
+    if (st && confirm(`حذف الفارس "${st.name}" نهائياً؟`)){
+      db.ref(`${ROOT}/students/${st.id}`).remove()
+        .then(()=> toast("تم حذف الفارس"))
+        .catch(()=> toast("⚠️ تعذر الحذف"));
+    }
+  });
+  $("manageList").querySelectorAll("[data-photo]").forEach(b=> b.onclick = ()=>{
+    photoTargetId = b.dataset.photo;
+    $("photoFile").click();
+  });
+  $("manageList").querySelectorAll("[data-delph]").forEach(b=> b.onclick = ()=>{
+    if (confirm("حذف صورة هذا الفارس؟")){
+      db.ref(`${ROOT}/students/${b.dataset.delph}/img`).remove()
+        .catch(()=> toast("⚠️ تعذر الحذف"));
+    }
+  });
 }
 
-let adminTab="students";
-document.querySelectorAll(".admin-tabs button").forEach(b=>{
-  b.onclick=()=>{
-    document.querySelectorAll(".admin-tabs button").forEach(x=>x.classList.remove("active"));
-    b.classList.add("active");adminTab=b.dataset.atab;renderAdmin();
+/* ═══ إضافة فصل ═══ */
+$("btnAddSec").onclick = ()=>{
+  const name = $("newSecName").value.trim();
+  if (!name) return;
+  if (SECTIONS.includes(name)){ toast("هذا الفصل موجود مسبقاً"); return; }
+  db.ref(`${ROOT}/sections`).set([...SECTIONS, name])
+    .then(()=>{ $("newSecName").value=""; toast("تمت إضافة الفصل: "+name); })
+    .catch(()=> toast("⚠️ تعذر الحفظ"));
+};
+$("newSecName").addEventListener("keydown", e=>{ if(e.key==="Enter") $("btnAddSec").click(); });
+
+/* ═══ رفع صورة (ضغط تلقائي 200px) ═══ */
+$("photoFile").onchange = e => {
+  const file = e.target.files[0];
+  if (!file || !photoTargetId) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const img = new Image();
+    img.onload = () => {
+      const cv = document.createElement("canvas");
+      const S = 200; cv.width = S; cv.height = S;
+      const ctx = cv.getContext("2d");
+      const m = Math.min(img.width, img.height);
+      ctx.drawImage(img, (img.width-m)/2, (img.height-m)/2, m, m, 0, 0, S, S);
+      const data = cv.toDataURL("image/jpeg", .7);
+      db.ref(`${ROOT}/students/${photoTargetId}/img`).set(data)
+        .then(()=> toast("تم رفع الصورة ✓"))
+        .catch(()=> toast("⚠️ تعذر رفع الصورة"));
+      photoTargetId = null;
+    };
+    img.src = ev.target.result;
   };
-});
-function renderAdmin(){
-  const area=document.getElementById("admin-area");
-  if(adminTab==="inits"){
-    area.innerHTML=`
-      <div class="edit-row head init-edit-row"><div>عنوان المشاركة</div><div>اسم المبادر</div><div>النقاط</div><div>الحالة</div><div></div></div>
-      ${DATA.inits.map((x,i)=>`
-      <div class="edit-row init-edit-row">
-        <input value="${esc(x.t)}" onchange="DATA.inits[${i}].t=this.value">
-        <input value="${esc(x.o)}" onchange="DATA.inits[${i}].o=this.value">
-        <input class="num-in" type="number" value="${x.p}" onchange="DATA.inits[${i}].p=+this.value||0">
-        <select style="font-family:inherit;font-size:13px;font-weight:700;padding:9px;border:1px solid var(--line);border-radius:9px" onchange="DATA.inits[${i}].s=this.value">
-          <option value="ok" ${x.s==="ok"?"selected":""}>معتمد ومضاف</option>
-          <option value="wait" ${x.s==="wait"?"selected":""}>قيد المراجعة</option>
-        </select>
-        <button class="del-btn" onclick="delRow(${i})" title="حذف">🗑</button>
-      </div>`).join("")}`;
+  reader.readAsDataURL(file);
+  e.target.value = "";
+};
+
+/* ═══ إضافة طالب ═══ */
+$("btnAdd").onclick = addStudent;
+$("newName").addEventListener("keydown", e=>{ if(e.key==="Enter") addStudent(); });
+function addStudent(){
+  const name = $("newName").value.trim();
+  if (!name) return;
+  const id = "s"+Date.now()+Math.floor(Math.random()*1000);
+  db.ref(`${ROOT}/students/${id}`).set({
+    id, name, section: $("newSection").value, points: 0
+  })
+  .then(()=> toast("تمت إضافة الفارس: " + name))
+  .catch(()=> toast("⚠️ تعذر الحفظ — تحقق من الإنترنت"));
+  $("newName").value = "";
+}
+
+/* ═══ دخول المعلم ═══ */
+let pinMode = "login";
+$("btnTeacher").onclick = ()=>{
+  if (teacher){
+    const mp = $("managePanel");
+    mp.style.display = mp.style.display === "none" ? "block" : "none";
+    $("btnTeacher").textContent = mp.style.display==="none" ? "🔧 لوحة المعلم" : "👁️ عرض اللوحة";
+    render();
+  } else {
+    pinMode = "login";
+    $("pinTitle").textContent = "دخول المعلم";
+    $("pinDesc").textContent = "أدخل الرمز السري للتعديل على المنصة";
+    $("pinOk").textContent = "دخول";
+    openPin();
+  }
+};
+$("btnExit").onclick = ()=>{
+  teacher = false;
+  $("managePanel").style.display = "none";
+  $("btnExit").style.display = "none";
+  $("btnTeacher").textContent = "🔑 دخول المعلم";
+  $("btnTeacher").classList.remove("on");
+  render();
+};
+$("btnPin").onclick = ()=>{
+  pinMode = "change";
+  $("pinTitle").textContent = "تغيير رمز المعلم";
+  $("pinDesc").textContent = "أدخل الرمز الجديد (4 أرقام أو أكثر) — يُحفظ للجميع فوراً";
+  $("pinOk").textContent = "حفظ الرمز";
+  openPin();
+};
+function openPin(){
+  $("pinInput").value = ""; $("pinErr").textContent = "";
+  $("pinOverlay").classList.add("show");
+  setTimeout(()=> $("pinInput").focus(), 50);
+}
+function closePin(){ $("pinOverlay").classList.remove("show"); }
+$("pinCancel").onclick = closePin;
+$("pinOverlay").onclick = e => { if (e.target === $("pinOverlay")) closePin(); };
+$("pinInput").addEventListener("keydown", e=>{ if(e.key==="Enter") $("pinOk").click(); });
+$("pinOk").onclick = ()=>{
+  const v = $("pinInput").value;
+  if (pinMode === "change"){
+    if (v.length < 4){ $("pinErr").textContent = "الرمز يجب أن يكون 4 أرقام على الأقل"; return; }
+    db.ref(`${ROOT}/pin`).set(v)
+      .then(()=>{ PIN = v; closePin(); toast("تم تغيير الرمز وحفظه ✓"); })
+      .catch(()=> $("pinErr").textContent = "تعذر الحفظ — تحقق من الإنترنت");
     return;
   }
-  const labels=adminTab==="students"?["اسم الطالب","الصف والفصل"]:adminTab==="teachers"?["اسم المعلم","التخصص / الصفة"]:["اسم الفصل","رائد الفصل"];
-  const arr=DATA[adminTab];
-  area.innerHTML=`
-    <div class="edit-row head"><div>${labels[0]}</div><div>${labels[1]}</div><div>النقاط</div><div>المشاركات</div><div></div></div>
-    ${arr.map((x,i)=>`
-    <div class="edit-row">
-      <div class="name-cell">
-        <input value="${esc(x.n)}" onchange="DATA.${adminTab}[${i}].n=this.value">
-        ${adminTab==="students"?`
-          ${x.img?`<img class="admin-thumb" src="${x.img}" alt="">`:""}
-          <button class="cam-btn ${x.img?"has":""}" title="رفع صورة الطالب (4×6)" onclick="pickPhoto(${i})">📷</button>
-          ${x.img?`<button class="cam-btn" style="background:#fdecec;border-color:#f3c1c1" title="حذف الصورة" onclick="delPhoto(${i})">✖</button>`:""}`:""}
-      </div>
-      <input value="${esc(x.g)}" onchange="DATA.${adminTab}[${i}].g=this.value">
-      <input class="num-in" type="number" value="${x.p}" onchange="DATA.${adminTab}[${i}].p=+this.value||0">
-      <input class="num-in" type="number" value="${x.c}" onchange="DATA.${adminTab}[${i}].c=+this.value||0">
-      <button class="del-btn" onclick="delRow(${i})" title="حذف">🗑</button>
-    </div>`).join("")}`;
-}
-function addRow(){
-  if(adminTab==="inits"){
-    DATA.inits.unshift({t:"مشاركة جديدة",type:"مبادرة تطوعية مدرسية",d:new Date().toISOString().slice(0,10),desc:"وصف المشاركة",o:"اسم المبادر",r:"طالب بالمدرسة",p:3,s:"wait"});
-  }else{
-    DATA[adminTab].push({n:"اسم جديد",g:adminTab==="students"?"الصف الرابع - أ":adminTab==="teachers"?"معلم":"رائد الفصل: ...",p:0,c:0});
+  if (v === PIN){
+    teacher = true; closePin();
+    $("managePanel").style.display = "block";
+    $("btnTeacher").textContent = "👁️ عرض اللوحة";
+    $("btnTeacher").classList.add("on");
+    $("btnExit").style.display = "inline-block";
+    render();
+  } else {
+    $("pinErr").textContent = "الرمز غير صحيح";
   }
-  renderAdmin();
-}
-function delRow(i){
-  if(!confirm("هل تريد حذف هذا الصف؟"))return;
-  (adminTab==="inits"?DATA.inits:DATA[adminTab]).splice(i,1);
-  renderAdmin();
-}
-async function saveAdmin(){
-  const ok=await persist();
-  renderAll();
-  const m=document.getElementById("saved-msg");
-  if(ok){
-    m.textContent="✔ تم الحفظ للجميع وتحديث اللوحات مباشرة";
-    m.style.background="#e2f5e9";m.style.color="#1a7a43";
-    celebrate();
-  }else{
-    m.textContent="⚠ تعذر الحفظ — تحقق من الاتصال بالإنترنت وحاول مجددًا";
-    m.style.background="#fdf3dd";m.style.color="#a77410";
-  }
-  m.classList.add("show");setTimeout(()=>m.classList.remove("show"),4000);
-}
+};
 
-function openModal(){clearInitFile();document.getElementById("overlay").classList.add("open")}
-function closeModal(){document.getElementById("overlay").classList.remove("open")}
-function saveInit(){
-  const t=document.getElementById("m-title").value.trim();
-  const o=document.getElementById("m-owner").value.trim();
-  if(!t||!o){alert("فضلاً أكمل عنوان المشاركة واسم المبادر.");return}
-  DATA.inits.unshift({
-    t,type:document.getElementById("m-type").value,
-    d:new Date().toISOString().slice(0,10),
-    desc:document.getElementById("m-desc").value.trim()||"مشاركة جديدة بانتظار مراجعة لجنة التميز المدرسي.",
-    o,r:document.getElementById("m-role").value,
-    p:0,s:"wait",
-    ...(pendingAtt?{att:pendingAtt}:{})
-  });
-  closeModal();persist();renderAll();
-  ["m-title","m-owner","m-desc"].forEach(id=>document.getElementById(id).value="");
-  clearInitFile();
-}
-document.getElementById("overlay").addEventListener("click",e=>{if(e.target.id==="overlay")closeModal()});
-document.getElementById("login-overlay").addEventListener("click",e=>{if(e.target.id==="login-overlay")closeLogin()});
-
-renderAll();
+$("search").addEventListener("input", render);
+render();
 </script>
 </body>
 </html>
