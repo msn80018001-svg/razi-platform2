@@ -1,2723 +1,702 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة التحفيز — مدرسة أبي بكر الرازي الابتدائية بينبع</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green-900:#0b3d2e; --green-800:#12503c; --green-700:#17614a;
+  --green-100:#e6f3ec; --green-50:#f2faf5;
+  --gold:#e8a020; --gold-dark:#c9820a; --gold-light:#fdf3dd;
+  --ink:#1e3a34; --muted:#7d938c; --bg:#f5f7f6; --card:#fff;
+  --line:#e3e9e6; --radius:16px; --shadow:0 4px 18px rgba(11,61,46,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Tajawal',Tahoma,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
 
-    <title>منصة التحفيز | مدرسة أبي بكر الرازي الابتدائية</title>
+header.top{background:linear-gradient(135deg,var(--green-900),var(--green-800));color:#fff;padding:18px 4vw 0}
+.top-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:16px}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:58px;height:58px;border-radius:14px;background:radial-gradient(circle at 30% 25%,#1d7a5c,#0b3d2e);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
+.brand .kicker{font-size:12px;color:#cfe6da}
+.brand h1{font-size:22px;font-weight:900;line-height:1.35}
+.brand .badge{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fdeec9;font-size:12px;font-weight:700;padding:2px 10px;border-radius:8px;margin-top:4px}
+.portal-btn{background:linear-gradient(180deg,var(--gold),var(--gold-dark));color:#3a2800;font-weight:800;font-size:14px;padding:10px 18px;border-radius:12px;box-shadow:0 3px 10px rgba(232,160,32,.35);transition:transform .15s}
+.portal-btn:hover{transform:translateY(-2px)}
+nav.tabs{display:flex;gap:4px;background:var(--green-900);margin:0 -4vw;padding:0 4vw;border-bottom:3px solid var(--gold);overflow-x:auto}
+nav.tabs button{color:#cfe6da;font-size:15px;font-weight:700;padding:14px 20px;border-radius:10px 10px 0 0;display:flex;align-items:center;gap:8px;white-space:nowrap;transition:background .15s,color .15s}
+nav.tabs button:hover{background:rgba(255,255,255,.07);color:#fff}
+nav.tabs button.active{background:#0a3527;color:var(--gold);box-shadow:inset 0 -3px 0 var(--gold)}
 
-    <meta name="description"
-        content="منصة التحفيز والتميز بمدرسة أبي بكر الرازي الابتدائية - إدارة تعليم ينبع">
+main{max-width:1180px;margin:0 auto;padding:28px 4vw 60px}
+.view{display:none;animation:fade .3s ease}
+.view.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
-    <link rel="icon" href="assets/images/logo.png">
+.welcome{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:var(--green-50);border:1px solid #d5ecdd;border-radius:var(--radius);padding:16px 20px;margin-bottom:24px}
+.welcome p{font-size:14.5px;color:#2c5347;line-height:1.8}
+.login-btn{background:linear-gradient(180deg,var(--gold),var(--gold-dark));color:#3a2800;font-weight:800;font-size:13.5px;padding:9px 16px;border-radius:11px;white-space:nowrap;box-shadow:0 3px 10px rgba(232,160,32,.3)}
 
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap"
-        rel="stylesheet">
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:30px}
+.stat{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.stat .label{font-size:14px;color:var(--muted);font-weight:700;margin-bottom:6px}
+.stat .num{font-size:34px;font-weight:900;color:var(--green-800);line-height:1}
+.stat .ic{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.ic.g{background:var(--green-100)} .ic.o{background:var(--gold-light)} .ic.b{background:#e8f0fb}
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+.podiums{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px}
+.podium-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 22px 0;overflow:hidden}
+.podium-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:26px}
+.podium-head h2{font-size:17px;font-weight:900;display:flex;align-items:center;gap:8px}
+.podium-head h2 .em{color:var(--gold)}
+.view-all{color:var(--gold-dark);font-size:13px;font-weight:700}
+.view-all:hover{text-decoration:underline}
+.podium{display:flex;align-items:flex-end;justify-content:center;gap:14px}
+.step{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;max-width:130px}
+.avatar{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;position:relative;background:#f1f5f3;border:3px solid var(--line)}
+.step.first .avatar{width:70px;height:70px;border-color:var(--gold);box-shadow:0 0 0 4px rgba(232,160,32,.18)}
+.step.first .avatar::after{content:"✨";position:absolute;top:-12px;left:-8px;font-size:16px}
+.step .name{font-size:13.5px;font-weight:800;text-align:center;line-height:1.4}
+.photo46{width:48px;height:72px;object-fit:cover;border-radius:8px;border:2px solid var(--line);display:block}
+.step.first .photo46{width:56px;height:84px;border-color:var(--gold);box-shadow:0 0 0 4px rgba(232,160,32,.18)}
+.cam-btn{width:26px;height:26px;border-radius:8px;background:var(--gold-light);border:1px solid #f0d9a4;font-size:13px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.cam-btn:hover{background:#fbe7bd}
+.cam-btn.has{background:#e2f5e9;border-color:#bfe6cc}
+.step .cam-btn{margin-top:2px}
+.name-cell{display:flex;align-items:center;gap:6px}
+.name-cell input{flex:1}
+.admin-thumb{width:26px;height:39px;object-fit:cover;border-radius:5px;border:1px solid var(--line);flex-shrink:0}
+.step .pts{background:var(--gold);color:#3a2800;font-size:12px;font-weight:800;padding:1px 10px;border-radius:8px}
+.step.second .pts,.step.third .pts{background:#eef2f0;color:#4a635b}
+.bar{width:100%;border-radius:10px 10px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:10px;font-weight:900;color:#a77f1e}
+.step.first .bar{height:110px;background:linear-gradient(180deg,#fbe7bd,#fdf3dd)}
+.step.second .bar{height:78px;background:linear-gradient(180deg,#e9eeec,#f5f7f6);color:#7d938c}
+.step.third .bar{height:56px;background:linear-gradient(180deg,#f3e3d3,#faf1e7);color:#b07a3f}
+
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:20px}
+.section-head h2{font-size:20px;font-weight:900;display:flex;align-items:center;gap:10px}
+.section-head h2 .em{color:var(--green-700)}
+.add-btn{background:#fff;border:1.5px dashed var(--gold);color:var(--gold-dark);font-weight:800;font-size:13.5px;padding:9px 16px;border-radius:11px;box-shadow:var(--shadow)}
+.add-btn:hover{background:var(--gold-light)}
+.filters{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;margin-bottom:22px}
+.filters select{font-family:inherit;font-size:14px;font-weight:700;color:var(--ink);padding:11px 14px;border:1px solid var(--line);border-radius:11px;background:#fff;width:100%}
+@media(max-width:640px){.filters{grid-template-columns:1fr}}
+
+.init-card{background:var(--card);border:1px solid #dcede2;border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:16px;display:grid;grid-template-columns:1fr 90px;gap:14px}
+.init-main .meta-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.tag{background:#eef4f1;color:#3c5b51;font-size:12px;font-weight:800;padding:2px 10px;border-radius:8px}
+.date{color:var(--muted);font-size:12.5px;font-weight:700}
+.init-main h3{font-size:16.5px;font-weight:900;color:var(--green-900);margin-bottom:8px}
+.desc{background:#f6f9f7;border-radius:10px;padding:10px 12px;font-size:13.5px;color:#40564e;line-height:1.8;margin-bottom:10px}
+.owner{font-size:13.5px}
+.owner b{font-weight:900}
+.owner .role{color:var(--muted);font-size:12px}
+.status{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:800;padding:3px 11px;border-radius:9px;margin-top:8px}
+.status.ok{background:#e2f5e9;color:#1a7a43}
+.status.wait{background:#fdf3dd;color:#a77410}
+.init-pts{text-align:center;border-inline-start:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.init-pts .lbl{font-size:12.5px;color:var(--muted);font-weight:700}
+.init-pts .val{font-size:26px;font-weight:900;color:var(--gold-dark)}
+
+.honor-head{text-align:center;margin-bottom:26px}
+.honor-head h2{font-size:24px;font-weight:900;display:inline-flex;align-items:center;gap:10px}
+.honor-head h2 .em{color:var(--gold)}
+.honor-head p{color:var(--muted);font-size:14px;margin-top:6px}
+.sub-tabs{display:flex;justify-content:center;gap:6px;border-bottom:1px solid var(--line);margin-bottom:24px;flex-wrap:wrap}
+.sub-tabs button{font-size:14.5px;font-weight:800;color:var(--muted);padding:11px 20px;display:flex;align-items:center;gap:7px;border-bottom:3px solid transparent;margin-bottom:-1px}
+.sub-tabs button.active{color:var(--green-800);border-color:var(--green-700)}
+.rank-list{max-width:720px;margin:0 auto}
+.rank{background:var(--card);border-radius:14px;box-shadow:var(--shadow);padding:14px 18px;margin-bottom:12px;display:flex;align-items:center;gap:14px;transition:transform .15s}
+.rank:hover{transform:translateY(-2px)}
+.medal{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;flex-shrink:0;background:#f1f5f3;color:#5d746c;border:2px solid var(--line)}
+.medal.m1{background:var(--gold-light);border-color:var(--gold);font-size:22px}
+.medal.m2{background:#eef1f4;border-color:#b9c4cc;font-size:22px}
+.medal.m3{background:#faeee1;border-color:#d8a468;font-size:22px}
+.rank-info{flex:1}
+.rank-info .nm{font-weight:900;font-size:15.5px}
+.rank-info .sub{color:var(--muted);font-size:12.5px;margin-top:2px}
+.rank-pts{background:#e2f5e9;color:#1a7a43;font-weight:900;font-size:14px;padding:6px 14px;border-radius:10px;white-space:nowrap}
+
+.admin-note{background:var(--gold-light);border:1px solid #f0d9a4;border-radius:var(--radius);padding:14px 18px;font-size:14px;color:#6b5000;line-height:1.9;margin-bottom:20px}
+.admin-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.admin-tabs button{background:#fff;border:1px solid var(--line);color:var(--muted);font-weight:800;font-size:13.5px;padding:9px 18px;border-radius:11px}
+.admin-tabs button.active{background:var(--green-800);color:#fff;border-color:var(--green-800)}
+.edit-table{width:100%}
+.edit-row{background:var(--card);border-radius:12px;box-shadow:var(--shadow);padding:12px 14px;margin-bottom:10px;display:grid;grid-template-columns:2fr 2fr 90px 90px 44px;gap:10px;align-items:center}
+.edit-row.head{background:transparent;box-shadow:none;padding:0 14px;font-size:12.5px;font-weight:800;color:var(--muted)}
+.edit-row input{font-family:inherit;font-size:13.5px;font-weight:700;padding:9px 11px;border:1px solid var(--line);border-radius:9px;width:100%;background:#fbfdfc}
+.edit-row input:focus{outline:2px solid var(--green-100);border-color:var(--green-700)}
+.edit-row input.num-in{text-align:center}
+.del-btn{width:38px;height:38px;border-radius:10px;background:#fdecec;color:#c0392b;font-size:16px;font-weight:900}
+.del-btn:hover{background:#f8d7d7}
+.admin-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.add-row-btn{background:#fff;border:1.5px dashed var(--green-700);color:var(--green-800);font-weight:800;font-size:13.5px;padding:10px 18px;border-radius:11px}
+.add-row-btn:hover{background:var(--green-50)}
+.save-btn{background:var(--green-800);color:#fff;font-weight:800;font-size:14px;padding:10px 26px;border-radius:11px;box-shadow:0 3px 10px rgba(18,80,60,.3)}
+.save-btn:hover{background:var(--green-700)}
+.reset-btn{background:#eef2f0;color:#4a635b;font-weight:800;font-size:13.5px;padding:10px 18px;border-radius:11px}
+.saved-msg{display:none;background:#e2f5e9;color:#1a7a43;font-weight:800;font-size:13.5px;padding:10px 18px;border-radius:11px}
+.saved-msg.show{display:inline-flex;align-items:center;gap:6px}
+.init-edit-row{grid-template-columns:2.2fr 1.6fr 90px 110px 44px}
+@media(max-width:760px){
+  .edit-row,.init-edit-row{grid-template-columns:1fr 1fr;grid-auto-rows:auto}
+  .edit-row.head{display:none}
+}
+
+.overlay{position:fixed;inset:0;background:rgba(11,61,46,.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.overlay.open{display:flex}
+.modal{background:#fff;border-radius:18px;max-width:520px;width:100%;padding:26px;box-shadow:0 20px 60px rgba(0,0,0,.25);max-height:90vh;overflow-y:auto}
+.modal h3{font-size:18px;font-weight:900;margin-bottom:18px;color:var(--green-900)}
+.modal label{display:block;font-size:13px;font-weight:800;margin-bottom:6px;color:#3c5b51}
+.modal input,.modal select,.modal textarea{width:100%;font-family:inherit;font-size:14px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin-bottom:14px}
+.modal textarea{resize:vertical;min-height:70px}
+.modal .actions{display:flex;gap:10px}
+.modal .save{background:var(--green-800);color:#fff;font-weight:800;padding:10px 22px;border-radius:11px}
+.modal .cancel{background:#eef2f0;color:#4a635b;font-weight:800;padding:10px 22px;border-radius:11px}
+
+footer{background:var(--green-900);color:#cfe6da;text-align:center;font-size:13px;padding:18px 4vw;line-height:1.9}
+footer b{color:var(--gold)}
+@media(max-width:640px){
+  .brand h1{font-size:17px}
+  nav.tabs button{font-size:13px;padding:12px 10px}
+  .init-card{grid-template-columns:1fr}
+  .init-pts{border-inline-start:none;border-top:1px solid var(--line);padding-top:10px;flex-direction:row;justify-content:center}
+}
+</style>
 </head>
-
 <body>
 
-    <!-- شاشة التحميل -->
-    <div id="loader">
-        <div class="spinner"></div>
-        <h2>جاري تحميل منصة التحفيز...</h2>
+<header class="top">
+  <div class="top-row">
+    <div class="brand">
+      <div class="logo">📗</div>
+      <div>
+        <div class="kicker">المملكة العربية السعودية • إدارة التعليم بمحافظة ينبع</div>
+        <h1>مدرسة أبي بكر الرازي الابتدائية بينبع</h1>
+        <span class="badge">لوحة النقاط والتحفيز</span>
+      </div>
     </div>
-
-    <!-- التطبيق -->
-    <div id="app">
-
-        <!-- Header -->
-        <header id="header"></header>
-
-        <!-- القائمة -->
-        <nav id="navbar"></nav>
-
-        <!-- المحتوى -->
-        <main id="content"></main>
-
-        <!-- Footer -->
-        <footer id="footer"></footer>
-
-    </div>
-
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
-
-    <!-- ملفات المشروع -->
-
-    <script src="firebase/firebase.js"></script>
-
-    <script src="assets/js/auth.js"></script>
-    <script src="assets/js/database.js"></script>
-    <script src="assets/js/storage.js"></script>
-    <script src="assets/js/ui.js"></script>
-    <script src="assets/js/app.js"></script>
-
-</body>
-
-</html>
-
-// ==========================================
-// firebase/firebase.js
-// إعداد وربط Firebase
-// ==========================================
-
-// استبدل القيم التالية بقيم مشروع Firebase الخاص بك
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID",
-  databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com"
-};
-
-// تشغيل Firebase
-firebase.initializeApp(firebaseConfig);
-
-// الخدمات المستخدمة
-const auth = firebase.auth();
-const firestore = firebase.firestore();
-const storage = firebase.storage();
-const realtimeDB = firebase.database();
-
-// تحسين إعدادات Firestore
-firestore.settings({
-  ignoreUndefinedProperties: true
-});
-
-// أسماء المجموعات
-const COLLECTIONS = {
-  USERS: "users",
-  STUDENTS: "students",
-  TEACHERS: "teachers",
-  CLASSES: "classes",
-  INITIATIVES: "initiatives",
-  SETTINGS: "settings",
-  LOGS: "logs"
-};
-
-// التحقق من الاتصال
-firebase
-  .database()
-  .ref(".info/connected")
-  .on("value", (snapshot) => {
-    if (snapshot.val()) {
-      console.log("✅ متصل بـ Firebase");
-    } else {
-      console.log("❌ غير متصل بـ Firebase");
-    }
-  });
-
-// التحقق من تسجيل الدخول
-auth.onAuthStateChanged((user) => {
-  if (user) {
-    console.log("👤 تم تسجيل الدخول:", user.email);
-  } else {
-    console.log("🚪 لا يوجد مستخدم مسجل دخول");
-  }
-});
-
-// ==========================================
-// assets/js/auth.js
-// نظام تسجيل الدخول والصلاحيات
-// ==========================================
-
-let currentUser = null;
-let currentRole = "guest";
-
-// تسجيل الدخول بالبريد الإلكتروني
-async function login(email, password) {
-    try {
-
-        const result = await auth.signInWithEmailAndPassword(email, password);
-
-        currentUser = result.user;
-
-        await loadUserRole();
-
-        showMessage("تم تسجيل الدخول بنجاح", "success");
-
-        goDashboard();
-
-    } catch (error) {
-
-        console.error(error);
-
-        showMessage(getError(error.code), "error");
-
-    }
-}
-
-// تسجيل الخروج
-async function logout() {
-
-    try {
-
-        await auth.signOut();
-
-        currentUser = null;
-
-        currentRole = "guest";
-
-        window.location.href = "index.html";
-
-    } catch (error) {
-
-        console.error(error);
-
-    }
-
-}
-
-// استعادة كلمة المرور
-async function resetPassword(email) {
-
-    try {
-
-        await auth.sendPasswordResetEmail(email);
-
-        showMessage("تم إرسال رابط إعادة تعيين كلمة المرور", "success");
-
-    } catch (error) {
-
-        showMessage(getError(error.code), "error");
-
-    }
-
-}
-
-// تحميل صلاحية المستخدم
-async function loadUserRole() {
-
-    if (!auth.currentUser) return;
-
-    const doc = await firestore
-        .collection(COLLECTIONS.USERS)
-        .doc(auth.currentUser.uid)
-        .get();
-
-    if (!doc.exists) {
-
-        currentRole = "guest";
-
-        return;
-
-    }
-
-    const data = doc.data();
-
-    currentRole = data.role || "guest";
-
-}
-
-// مراقبة تسجيل الدخول
-auth.onAuthStateChanged(async (user) => {
-
-    if (!user) {
-
-        currentUser = null;
-
-        currentRole = "guest";
-
-        return;
-
-    }
-
-    currentUser = user;
-
-    await loadUserRole();
-
-});
-
-// التحقق من الصلاحيات
-function isAdmin() {
-    return currentRole === "admin";
-}
-
-function isTeacher() {
-    return currentRole === "teacher";
-}
-
-function isGuest() {
-    return currentRole === "guest";
-}
-
-// حماية الصفحات
-function requireAdmin() {
-
-    if (!isAdmin()) {
-
-        alert("ليس لديك صلاحية الوصول.");
-
-        window.location.href = "index.html";
-
-    }
-
-}
-
-function requireTeacher() {
-
-    if (!(isTeacher() || isAdmin())) {
-
-        alert("ليس لديك صلاحية الوصول.");
-
-        window.location.href = "index.html";
-
-    }
-
-}
-
-// رسائل الأخطاء
-function getError(code) {
-
-    switch (code) {
-
-        case "auth/user-not-found":
-            return "المستخدم غير موجود";
-
-        case "auth/wrong-password":
-            return "كلمة المرور غير صحيحة";
-
-        case "auth/invalid-email":
-            return "البريد الإلكتروني غير صحيح";
-
-        case "auth/too-many-requests":
-            return "تم تجاوز عدد المحاولات، حاول لاحقًا";
-
-        default:
-            return "حدث خطأ أثناء تسجيل الدخول";
-
-    }
-
-}
-
-// رسالة مؤقتة
-function showMessage(message, type) {
-
-    console.log(type.toUpperCase() + " : " + message);
-
-}
-
-// الانتقال للوحة الرئيسية
-function goDashboard() {
-
-    window.location.href = "dashboard.html";
-
-}
-
-// ==========================================
-// assets/js/auth.js
-// نظام تسجيل الدخول والصلاحيات
-// ==========================================
-
-let currentUser = null;
-let currentRole = "guest";
-
-// تسجيل الدخول بالبريد الإلكتروني
-async function login(email, password) {
-    try {
-
-        const result = await auth.signInWithEmailAndPassword(email, password);
-
-        currentUser = result.user;
-
-        await loadUserRole();
-
-        showMessage("تم تسجيل الدخول بنجاح", "success");
-
-        goDashboard();
-
-    } catch (error) {
-
-        console.error(error);
-
-        showMessage(getError(error.code), "error");
-
-    }
-}
-
-// تسجيل الخروج
-async function logout() {
-
-    try {
-
-        await auth.signOut();
-
-        currentUser = null;
-
-        currentRole = "guest";
-
-        window.location.href = "index.html";
-
-    } catch (error) {
-
-        console.error(error);
-
-    }
-
-}
-
-// استعادة كلمة المرور
-async function resetPassword(email) {
-
-    try {
-
-        await auth.sendPasswordResetEmail(email);
-
-        showMessage("تم إرسال رابط إعادة تعيين كلمة المرور", "success");
-
-    } catch (error) {
-
-        showMessage(getError(error.code), "error");
-
-    }
-
-}
-
-// تحميل صلاحية المستخدم
-async function loadUserRole() {
-
-    if (!auth.currentUser) return;
-
-    const doc = await firestore
-        .collection(COLLECTIONS.USERS)
-        .doc(auth.currentUser.uid)
-        .get();
-
-    if (!doc.exists) {
-
-        currentRole = "guest";
-
-        return;
-
-    }
-
-    const data = doc.data();
-
-    currentRole = data.role || "guest";
-
-}
-
-// مراقبة تسجيل الدخول
-auth.onAuthStateChanged(async (user) => {
-
-    if (!user) {
-
-        currentUser = null;
-
-        currentRole = "guest";
-
-        return;
-
-    }
-
-    currentUser = user;
-
-    await loadUserRole();
-
-});
-
-// التحقق من الصلاحيات
-function isAdmin() {
-    return currentRole === "admin";
-}
-
-function isTeacher() {
-    return currentRole === "teacher";
-}
-
-function isGuest() {
-    return currentRole === "guest";
-}
-
-// حماية الصفحات
-function requireAdmin() {
-
-    if (!isAdmin()) {
-
-        alert("ليس لديك صلاحية الوصول.");
-
-        window.location.href = "index.html";
-
-    }
-
-}
-
-function requireTeacher() {
-
-    if (!(isTeacher() || isAdmin())) {
-
-        alert("ليس لديك صلاحية الوصول.");
-
-        window.location.href = "index.html";
-
-    }
-
-}
-
-// رسائل الأخطاء
-function getError(code) {
-
-    switch (code) {
-
-        case "auth/user-not-found":
-            return "المستخدم غير موجود";
-
-        case "auth/wrong-password":
-            return "كلمة المرور غير صحيحة";
-
-        case "auth/invalid-email":
-            return "البريد الإلكتروني غير صحيح";
-
-        case "auth/too-many-requests":
-            return "تم تجاوز عدد المحاولات، حاول لاحقًا";
-
-        default:
-            return "حدث خطأ أثناء تسجيل الدخول";
-
-    }
-
-}
-
-// رسالة مؤقتة
-function showMessage(message, type) {
-
-    console.log(type.toUpperCase() + " : " + message);
-
-}
-
-// الانتقال للوحة الرئيسية
-function goDashboard() {
-
-    window.location.href = "dashboard.html";
-
-}
-
-// ==========================================
-// assets/js/storage.js
-// إدارة رفع الملفات والصور إلى Firebase Storage
-// ==========================================
-
-// الحد الأقصى لحجم الملف (5MB)
-const MAX_FILE_SIZE = 5 * 1024 * 1024;
-
-// الامتدادات المسموح بها
-const ALLOWED_TYPES = [
-    "image/jpeg",
-    "image/jpg",
-    "image/png",
-    "image/webp"
-];
-
-// ------------------------------------------
-// التحقق من الملف
-// ------------------------------------------
-
-function validateImage(file) {
-
-    if (!file)
-        return {
-            ok: false,
-            message: "لم يتم اختيار ملف."
-        };
-
-    if (!ALLOWED_TYPES.includes(file.type))
-        return {
-            ok: false,
-            message: "نوع الصورة غير مدعوم."
-        };
-
-    if (file.size > MAX_FILE_SIZE)
-        return {
-            ok: false,
-            message: "حجم الصورة يتجاوز 5MB."
-        };
-
-    return {
-        ok: true
-    };
-
-}
-
-// ------------------------------------------
-// رفع صورة طالب
-// ------------------------------------------
-
-async function uploadStudentPhoto(studentId, file) {
-
-    const check = validateImage(file);
-
-    if (!check.ok)
-        throw new Error(check.message);
-
-    const path = `students/${studentId}/${Date.now()}_${file.name}`;
-
-    const ref = storage.ref(path);
-
-    await ref.put(file);
-
-    const url = await ref.getDownloadURL();
-
-    await firestore
-        .collection(COLLECTIONS.STUDENTS)
-        .doc(studentId)
-        .update({
-
-            photo: url
-
-        });
-
-    return url;
-
-}
-
-// ------------------------------------------
-// رفع صورة معلم
-// ------------------------------------------
-
-async function uploadTeacherPhoto(teacherId, file) {
-
-    const check = validateImage(file);
-
-    if (!check.ok)
-        throw new Error(check.message);
-
-    const path = `teachers/${teacherId}/${Date.now()}_${file.name}`;
-
-    const ref = storage.ref(path);
-
-    await ref.put(file);
-
-    const url = await ref.getDownloadURL();
-
-    await firestore
-        .collection(COLLECTIONS.TEACHERS)
-        .doc(teacherId)
-        .update({
-
-            photo: url
-
-        });
-
-    return url;
-
-}
-
-// ------------------------------------------
-// حذف صورة
-// ------------------------------------------
-
-async function deletePhoto(storagePath) {
-
-    try {
-
-        await storage.ref(storagePath).delete();
-
-        return true;
-
-    } catch (error) {
-
-        console.error(error);
-
-        return false;
-
-    }
-
-}
-
-// ------------------------------------------
-// رفع شعار المدرسة
-// ------------------------------------------
-
-async function uploadSchoolLogo(file) {
-
-    const check = validateImage(file);
-
-    if (!check.ok)
-        throw new Error(check.message);
-
-    const ref = storage.ref("settings/logo.png");
-
-    await ref.put(file);
-
-    const url = await ref.getDownloadURL();
-
-    await firestore
-        .collection(COLLECTIONS.SETTINGS)
-        .doc("main")
-        .set({
-
-            logo: url
-
-        }, {
-            merge: true
-        });
-
-    return url;
-
-}
-
-// ------------------------------------------
-// رفع أي ملف
-// ------------------------------------------
-
-async function uploadFile(folder, file) {
-
-    const ref = storage.ref(`${folder}/${Date.now()}_${file.name}`);
-
-    await ref.put(file);
-
-    return await ref.getDownloadURL();
-
-}
-
-// ------------------------------------------
-// إنشاء صورة افتراضية
-// ------------------------------------------
-
-function defaultAvatar(name = "") {
-
-    return `https://ui-avatars.com/api/?background=0F6B44&color=ffffff&bold=true&name=${encodeURIComponent(name)}`;
-
-} // =======================================================
-// assets/js/ui.js
-// الجزء الأول
-// عناصر الواجهة الرئيسية
-// =======================================================
-
-// ===============================
-// عنصر التطبيق
-// ===============================
-
-const app = document.getElementById("app");
-const header = document.getElementById("header");
-const navbar = document.getElementById("navbar");
-const content = document.getElementById("content");
-const footer = document.getElementById("footer");
-
-// ===============================
-// شعار المدرسة
-// ===============================
-
-function renderHeader() {
-
-header.innerHTML = `
-
-<header class="main-header">
-
-<div class="header-left">
-
-<img id="schoolLogo"
-src="assets/images/logo.png"
-class="logo">
-
-<div>
-
-<h1>
-
-منصة التحفيز والتميز
-
-</h1>
-
-<p>
-
-مدرسة أبي بكر الرازي الابتدائية بينبع
-
-</p>
-
-</div>
-
-</div>
-
-<div class="header-right">
-
-<div id="userBox">
-
-</div>
-
-</div>
-
+    <button class="portal-btn" id="portal-btn" onclick="portalClick()">🔑 دخول بوابة المدرسة</button>
+  </div>
+  <nav class="tabs">
+    <button class="active" data-view="dash">🏆 لوحة التحفيز</button>
+    <button data-view="log">📄 سجل المبادرات العام</button>
+    <button data-view="honor">🥇 لوحة الشرف والترتيب</button>
+    <button data-view="admin">⚙️ الإدارة والتعديل</button>
+  </nav>
 </header>
 
-`;
-
-renderUserBox();
-
-}
-
-// ===============================
-// المستخدم الحالي
-// ===============================
-
-function renderUserBox(){
-
-const box=document.getElementById("userBox");
-
-if(!box)return;
-
-if(currentUser){
-
-box.innerHTML=`
-
-<div class="user-card">
-
-<div class="user-name">
-
-${currentUser.email}
-
-</div>
-
-<div class="user-role">
-
-${currentRole}
-
-</div>
-
-<button
-class="logout-btn"
-onclick="logout()">
-
-تسجيل الخروج
-
-</button>
-
-</div>
-
-`;
-
-}else{
-
-box.innerHTML=`
-
-<button
-class="login-btn"
-onclick="window.location='login.html'">
-
-تسجيل الدخول
-
-</button>
-
-`;
-
-}
-
-}
-
-// ===============================
-// القائمة الجانبية
-// ===============================
-
-function renderNavbar(){
-
-navbar.innerHTML=`
-
-<ul class="menu">
-
-<li>
-
-<a
-href="#"
-onclick="loadDashboard()">
-
-🏠 الرئيسية
-
-</a>
-
-</li>
-
-<li>
-
-<a
-href="#"
-onclick="loadStudents()">
-
-🎓 الطلاب
-
-</a>
-
-</li>
-
-<li>
-
-<a
-href="#"
-onclick="loadTeachers()">
-
-👨‍🏫 المعلمون
-
-</a>
-
-</li>
-
-<li>
-
-<a
-href="#"
-onclick="loadClasses()">
-
-🏫 الفصول
-
-</a>
-
-</li>
-
-<li>
-
-<a
-href="#"
-onclick="loadInitiatives()">
-
-💡 المبادرات
-
-</a>
-
-</li>
-
-<li>
-
-<a
-href="#"
-onclick="loadHonorBoard()">
-
-🏆 لوحة الشرف
-
-</a>
-
-</li>
-
-<li id="adminMenu">
-
-<a
-href="#"
-onclick="loadAdmin()">
-
-⚙ الإدارة
-
-</a>
-
-</li>
-
-</ul>
-
-`;
-
-if(!isAdmin()){
-
-const admin=document.getElementById("adminMenu");
-
-if(admin){
-
-admin.style.display="none";
-
-}
-
-}
-
-}
-
-// ===============================
-// التذييل
-// ===============================
-
-function renderFooter(){
-
-footer.innerHTML=`
-
-<div class="footer-box">
-
-جميع الحقوق محفوظة ©
-
-مدرسة أبي بكر الرازي الابتدائية
-
-1448 هـ
-
-</div>
-
-`;
-
-}
-
-// ===============================
-// شاشة التحميل
-// ===============================
-
-function showLoader(){
-
-document.getElementById("loader").style.display="flex";
-
-}
-
-function hideLoader(){
-
-document.getElementById("loader").style.display="none";
-
-}
-
-// ===============================
-// رسائل النظام
-// ===============================
-
-function toast(message,type="success"){
-
-const div=document.createElement("div");
-
-div.className="toast "+type;
-
-div.innerHTML=message;
-
-document.body.appendChild(div);
-
-setTimeout(()=>{
-
-div.classList.add("show");
-
-},100);
-
-setTimeout(()=>{
-
-div.classList.remove("show");
-
-setTimeout(()=>{
-
-div.remove();
-
-},400);
-
-},3000);
-
-}
-
-// ===============================
-// نافذة التأكيد
-// ===============================
-
-function confirmDialog(message,callback){
-
-const ok=confirm(message);
-
-if(ok){
-
-callback();
-
-}
-
-}
-
-// ===============================
-// تهيئة الواجهة
-// ===============================
-
-function buildUI(){
-
-renderHeader();
-
-renderNavbar();
-
-renderFooter();
-
-}
-
-// =======================================================
-// Dashboard
-// =======================================================
-
-async function loadDashboard() {
-
-    showLoader();
-
-    try {
-
-        const students = await getStudents();
-        const teachers = await getTeachers();
-        const classes = await getClasses();
-        const initiatives = await getInitiatives();
-
-        content.innerHTML = `
-            <div class="dashboard">
-
-                <div class="stats-grid">
-
-                    ${statCard("🎓","الطلاب",students.length,"studentsCard")}
-
-                    ${statCard("👨‍🏫","المعلمون",teachers.length,"teachersCard")}
-
-                    ${statCard("🏫","الفصول",classes.length,"classesCard")}
-
-                    ${statCard("💡","المبادرات",initiatives.length,"initCard")}
-
-                </div>
-
-                <div class="dashboard-row">
-
-                    <div id="topStudents"></div>
-
-                    <div id="topTeachers"></div>
-
-                </div>
-
-                <div id="latestInitiatives"></div>
-
-            </div>
-        `;
-
-        renderTopStudents(students);
-        renderTopTeachers(teachers);
-        renderLatestInitiatives(initiatives);
-
-    }
-
-    finally {
-
-        hideLoader();
-
-    }
-
-}
-
-// ==========================================
-// بطاقة إحصائية
-// ==========================================
-
-function statCard(icon,title,value,id){
-
-return `
-<div class="stat-card" id="${id}">
-
-<div class="stat-icon">
-${icon}
-</div>
-
-<div class="stat-info">
-
-<div class="stat-title">
-${title}
-</div>
-
-<div class="stat-value">
-${value}
-</div>
-
-</div>
-
-</div>
-`;
-
-}
-
-// ==========================================
-// أفضل الطلاب
-// ==========================================
-
-function renderTopStudents(list){
-
-const top=[...list]
-.sort((a,b)=>b.points-a.points)
-.slice(0,5);
-
-document.getElementById("topStudents").innerHTML=`
-
-<div class="card">
-
-<h2>🏆 أفضل الطلاب</h2>
-
-<div class="rank-list">
-
-${top.map(studentCard).join("")}
-
-</div>
-
-</div>
-
-`;
-
-}
-
-// ==========================================
-// بطاقة طالب
-// ==========================================
-
-function studentCard(student){
-
-return `
-
-<div class="person-card">
-
-<img
-src="${student.photo||defaultAvatar(student.name)}"
-class="avatar">
-
-<div class="person-info">
-
-<div class="person-name">
-
-${student.name}
-
-</div>
-
-<div class="person-sub">
-
-${student.class}
-
-</div>
-
-</div>
-
-<div class="points">
-
-${student.points}
-
-</div>
-
-</div>
-
-`;
-
-} // =======================================================
-// أفضل المعلمين
-// =======================================================
-
-function renderTopTeachers(list) {
-
-    const top = [...list]
-        .sort((a, b) => b.points - a.points)
-        .slice(0, 5);
-
-    document.getElementById("topTeachers").innerHTML = `
-
-    <div class="card">
-
-        <h2>👨‍🏫 أفضل المعلمين</h2>
-
-        <div class="rank-list">
-
-            ${top.map(teacherCard).join("")}
-
-        </div>
-
+<main>
+
+<section class="view active" id="view-dash">
+  <div class="welcome">
+    <p>ⓘ أهلاً بك في منصة التحفيز لمدرسة أبي بكر الرازي الابتدائية بينبع! بإمكان الجميع الاطلاع على مسيرة الإنجازات وسجلات الشرف مباشرة وتشجيع فرسان التميز.</p>
+    <button class="login-btn" onclick="goView('admin')">🖊 تسجيل الدخول للمشاركة</button>
+  </div>
+  <div class="stats">
+    <div class="stat"><div><div class="label">إجمالي الطلاب المشمولين</div><div class="num" id="stat-students">0</div></div><div class="ic g">🎓</div></div>
+    <div class="stat"><div><div class="label">إجمالي المعلمين المشاركين</div><div class="num" id="stat-teachers">0</div></div><div class="ic o">👤</div></div>
+    <div class="stat"><div><div class="label">المشاركات والأنشطة الإجمالية</div><div class="num" id="stat-inits">0</div></div><div class="ic b">📄</div></div>
+    <div class="stat"><div><div class="label">إجمالي النقاط الممنوحة</div><div class="num" id="stat-points">0</div></div><div class="ic o">🏆</div></div>
+  </div>
+  <div class="podiums">
+    <div class="podium-card">
+      <div class="podium-head">
+        <h2><span class="em">🏆</span> أوائل فرسان التميز (الطلاب)</h2>
+        <button class="view-all" onclick="goHonor('students')">‹ عرض القائمة كاملة</button>
+      </div>
+      <div class="podium" id="podium-students"></div>
     </div>
-
-    `;
-
-}
-
-// =======================================================
-// بطاقة معلم
-// =======================================================
-
-function teacherCard(teacher) {
-
-    return `
-
-    <div class="person-card">
-
-        <img
-            src="${teacher.photo || defaultAvatar(teacher.name)}"
-            class="avatar">
-
-        <div class="person-info">
-
-            <div class="person-name">
-
-                ${teacher.name}
-
-            </div>
-
-            <div class="person-sub">
-
-                ${teacher.subject || "معلم"}
-
-            </div>
-
-        </div>
-
-        <div class="points">
-
-            ${teacher.points}
-
-        </div>
-
+    <div class="podium-card">
+      <div class="podium-head">
+        <h2><span class="em">🎖</span> رواد الإلهام والمبادرات (المعلمون)</h2>
+        <button class="view-all" onclick="goHonor('teachers')">‹ عرض القائمة كاملة</button>
+      </div>
+      <div class="podium" id="podium-teachers"></div>
     </div>
+  </div>
+</section>
 
-    `;
+<section class="view" id="view-log">
+  <div class="section-head">
+    <h2><span class="em">📄</span> سجل المبادرات والمشاركات العام</h2>
+    <button class="add-btn" onclick="openModal()">＋ إضافة مشاركة جديدة</button>
+  </div>
+  <div class="filters">
+    <select id="f-type" onchange="renderLog()">
+      <option value="">جميع أنواع المشاركات</option>
+      <option>مشروع علمي متكامل</option>
+      <option>مبادرة تطوعية مدرسية</option>
+      <option>تقديم درس تطبيقي نموذجي</option>
+      <option>مسابقة علمية</option>
+      <option>نشاط إذاعي وتوعوي</option>
+    </select>
+    <select id="f-status" onchange="renderLog()">
+      <option value="">جميع حالات الموافقات</option>
+      <option value="ok">معتمد ومضاف</option>
+      <option value="wait">قيد المراجعة</option>
+    </select>
+  </div>
+  <div id="log-list"></div>
+</section>
 
-}
+<section class="view" id="view-honor">
+  <div class="honor-head">
+    <h2><span class="em">🏆</span> لوحة شرف مدرسة أبي بكر الرازي الابتدائية بينبع</h2>
+    <p>لوحة الصدارة والترتيب الرقمي المباشر لجميع منسوبي المدرسة من فرسان ونخبة</p>
+  </div>
+  <div class="sub-tabs">
+    <button class="active" data-sub="students">🎓 ترتيب الطلاب</button>
+    <button data-sub="teachers">👤 ترتيب المعلمين</button>
+    <button data-sub="classes">🏫 تنافس الفصول</button>
+  </div>
+  <div class="rank-list" id="rank-list"></div>
+</section>
 
-// =======================================================
-// لوحة الشرف
-// =======================================================
-
-async function loadHonorBoard() {
-
-    showLoader();
-
-    try {
-
-        const students = await getStudents();
-
-        const sorted = [...students]
-            .sort((a, b) => b.points - a.points);
-
-        content.innerHTML = `
-
-        <div class="page">
-
-            <h1 class="page-title">
-
-                🏆 لوحة شرف الطلاب
-
-            </h1>
-
-            <div class="honor-grid">
-
-                ${sorted.map((student, index) =>
-                    honorCard(student, index + 1)
-                ).join("")}
-
-            </div>
-
-        </div>
-
-        `;
-
-    } finally {
-
-        hideLoader();
-
-    }
-
-}
-
-// =======================================================
-// بطاقة لوحة الشرف
-// =======================================================
-
-function honorCard(student, rank) {
-
-    let medal = "🎖";
-
-    if (rank === 1) medal = "🥇";
-    if (rank === 2) medal = "🥈";
-    if (rank === 3) medal = "🥉";
-
-    return `
-
-    <div class="honor-card">
-
-        <div class="medal">
-
-            ${medal}
-
-        </div>
-
-        <img
-            src="${student.photo || defaultAvatar(student.name)}"
-            class="honor-photo">
-
-        <h3>
-
-            ${student.name}
-
-        </h3>
-
-        <p>
-
-            ${student.class}
-
-        </p>
-
-        <div class="honor-points">
-
-            ${student.points} نقطة
-
-        </div>
-
+<section class="view" id="view-admin">
+  <div class="section-head">
+    <h2><span class="em">⚙️</span> لوحة الإدارة والتعديل</h2>
+  </div>
+  <div class="admin-note">
+    ✏️ من هنا تستطيع تعديل الأسماء والنقاط مباشرة دون لمس الكود: اكتب في الحقول، أضف صفوفًا جديدة أو احذفها، ثم اضغط <b>«حفظ التعديلات»</b> ليتم تحديث جميع اللوحات فورًا مع حفظ البيانات تلقائيًا لجميع الزوار.
+  </div>
+  <div class="admin-tabs">
+    <button class="active" data-atab="students">🎓 الطلاب</button>
+    <button data-atab="teachers">👤 المعلمون</button>
+    <button data-atab="classes">🏫 الفصول</button>
+    <button data-atab="inits">📄 المشاركات</button>
+  </div>
+  <div id="admin-area"></div>
+  <div class="admin-actions">
+    <button class="add-row-btn" onclick="addRow()">＋ إضافة صف جديد</button>
+    <button class="save-btn" onclick="saveAdmin()">💾 حفظ التعديلات</button>
+    <span class="saved-msg" id="saved-msg">✔ تم الحفظ وتحديث اللوحات</span>
+  </div>
+  <div style="margin-top:26px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;max-width:480px">
+    <div style="font-weight:900;font-size:15px;margin-bottom:10px">🔐 تغيير كلمة مرور البوابة</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <input id="new-pass" type="password" placeholder="كلمة المرور الجديدة" style="flex:1;min-width:180px;font-family:inherit;font-size:14px;padding:10px 12px;border:1px solid var(--line);border-radius:10px">
+      <button class="save-btn" onclick="changePass()">تحديث</button>
     </div>
+    <span class="saved-msg" id="pass-msg" style="margin-top:10px">✔ تم تحديث كلمة المرور</span>
+  </div>
+</section>
 
-    `;
+</main>
 
-} // =======================================================
-// المبادرات والأنشطة
-// =======================================================
-
-async function loadInitiatives() {
-
-    showLoader();
-
-    try {
-
-        const initiatives = await getInitiatives();
-
-        content.innerHTML = `
-
-        <div class="page">
-
-            <div class="page-header">
-
-                <h1>💡 سجل المبادرات</h1>
-
-                ${isTeacher() || isAdmin() ? `
-                <button class="primary-btn"
-                    onclick="openInitiativeModal()">
-
-                    + إضافة مبادرة
-
-                </button>
-                ` : ""}
-
-            </div>
-
-            <div id="initiativeContainer">
-
-                ${initiatives.map(initCard).join("")}
-
-            </div>
-
-        </div>
-
-        `;
-
-    }
-
-    finally {
-
-        hideLoader();
-
-    }
-
-}
-
-// =======================================================
-// بطاقة المبادرة
-// =======================================================
-
-function initCard(item){
-
-const color=
-item.status==="approved"
-? "approved"
-: item.status==="pending"
-? "pending"
-: "rejected";
-
-const icon=
-item.status==="approved"
-? "✅"
-: item.status==="pending"
-? "⏳"
-: "❌";
-
-return `
-
-<div class="initiative-card ${color}">
-
-<div class="initiative-top">
-
-<div>
-
-<h3>
-
-${item.title}
-
-</h3>
-
-<div class="initiative-owner">
-
-👤 ${item.owner}
-
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <h3>إضافة مشاركة جديدة</h3>
+    <label>عنوان المشاركة</label>
+    <input id="m-title" placeholder="مثال: معرض العلوم التفاعلي">
+    <label>نوع المشاركة</label>
+    <select id="m-type">
+      <option>مشروع علمي متكامل</option>
+      <option>مبادرة تطوعية مدرسية</option>
+      <option>تقديم درس تطبيقي نموذجي</option>
+      <option>مسابقة علمية</option>
+      <option>نشاط إذاعي وتوعوي</option>
+    </select>
+    <label>اسم المبادر</label>
+    <input id="m-owner" placeholder="الاسم الثلاثي">
+    <label>صفة المبادر</label>
+    <select id="m-role"><option>طالب بالمدرسة</option><option>معلم</option></select>
+    <label>النقاط المقترحة</label>
+    <input id="m-pts" type="number" value="3" min="1" max="10">
+    <label>وصف موجز</label>
+    <textarea id="m-desc" placeholder="وصف مختصر للمشاركة وأثرها"></textarea>
+    <div class="actions">
+      <button class="save" onclick="saveInit()">حفظ وإرسال للاعتماد</button>
+      <button class="cancel" onclick="closeModal()">إلغاء</button>
+    </div>
+  </div>
 </div>
 
+<div class="overlay" id="login-overlay">
+  <div class="modal" style="max-width:420px">
+    <h3>🔑 دخول بوابة المدرسة</h3>
+    <p style="font-size:13.5px;color:var(--muted);line-height:1.9;margin-bottom:16px">هذه البوابة مخصصة للجنة التميز المدرسي لإدارة الأسماء والنقاط والمشاركات.</p>
+    <label>كلمة المرور</label>
+    <input id="login-pass" type="password" placeholder="أدخل كلمة المرور" onkeydown="if(event.key==='Enter')doLogin()">
+    <div id="login-err" style="display:none;background:#fdecec;color:#c0392b;font-size:13px;font-weight:800;padding:8px 12px;border-radius:9px;margin-bottom:14px">✖ كلمة المرور غير صحيحة، حاول مرة أخرى.</div>
+    <div class="actions">
+      <button class="save" onclick="doLogin()">دخول</button>
+      <button class="cancel" onclick="closeLogin()">إلغاء</button>
+    </div>
+  </div>
 </div>
 
-<div class="initiative-status">
-
-${icon}
-
-</div>
-
-</div>
-
-<div class="initiative-body">
-
-${item.description}
-
-</div>
-
-<div class="initiative-footer">
-
-<div>
-
-🏅
-
-${item.points}
-
-نقطة
-
-</div>
-
-<div>
-
-📅
-
-${formatDate(item.createdAt)}
-
-</div>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-// =======================================================
-// آخر خمس مبادرات
-// =======================================================
-
-function renderLatestInitiatives(list){
-
-const latest=[...list].slice(0,5);
-
-document.getElementById("latestInitiatives").innerHTML=`
-
-<div class="card">
-
-<h2>
-
-📢 آخر المبادرات
-
-</h2>
-
-${latest.map(initMiniCard).join("")}
-
-</div>
-
-`;
-
-}
-
-// =======================================================
-// بطاقة مصغرة
-// =======================================================
-
-function initMiniCard(item){
-
-return `
-
-<div class="mini-init">
-
-<div>
-
-<strong>
-
-${item.title}
-
-</strong>
-
-</div>
-
-<div>
-
-${item.owner}
-
-</div>
-
-<div class="mini-points">
-
-+${item.points}
-
-</div>
-
-</div>
-
-`;
-
-}
-
-// =======================================================
-// تنسيق التاريخ
-// =======================================================
-
-function formatDate(date){
-
-if(!date)
-return "-";
-
-if(date.seconds){
-
-date=new Date(date.seconds*1000);
-
-}else{
-
-date=new Date(date);
-
-}
-
-return date.toLocaleDateString("ar-SA");
-
-} // =======================================================
-// لوحة التحكم - الرسوم والإحصائيات
-// assets/js/ui.js
-// الجزء 2D
-// =======================================================
-
-// ------------------------------------------
-// البحث الفوري
-// ------------------------------------------
-
-function searchStudents(keyword, students) {
-
-    keyword = keyword.trim().toLowerCase();
-
-    if (keyword === "")
-        return students;
-
-    return students.filter(student => {
-
-        return (
-            student.name.toLowerCase().includes(keyword) ||
-            student.class.toLowerCase().includes(keyword)
-        );
-
-    });
-
-}
-
-// ------------------------------------------
-// منصة التتويج
-// ------------------------------------------
-
-function renderPodium(students) {
-
-    const top = [...students]
-        .sort((a, b) => b.points - a.points)
-        .slice(0, 3);
-
-    if (top.length < 3)
-        return "";
-
-    return `
-
-<div class="podium">
-
-<div class="podium-second">
-
-<img src="${top[1].photo || defaultAvatar(top[1].name)}">
-
-<h3>${top[1].name}</h3>
-
-<span>${top[1].points} نقطة</span>
-
-</div>
-
-<div class="podium-first">
-
-<img src="${top[0].photo || defaultAvatar(top[0].name)}">
-
-<h2>${top[0].name}</h2>
-
-<span>${top[0].points} نقطة</span>
-
-</div>
-
-<div class="podium-third">
-
-<img src="${top[2].photo || defaultAvatar(top[2].name)}">
-
-<h3>${top[2].name}</h3>
-
-<span>${top[2].points} نقطة</span>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-// ------------------------------------------
-// عداد النقاط
-// ------------------------------------------
-
-function totalPoints(students){
-
-let total = 0;
-
-students.forEach(student=>{
-
-total += Number(student.points || 0);
-
-});
-
-return total;
-
-}
-
-// ------------------------------------------
-// متوسط النقاط
-// ------------------------------------------
-
-function averagePoints(students){
-
-if(students.length===0)
-return 0;
-
-return (
-totalPoints(students)
-/ students.length
-).toFixed(1);
-
-}
-
-// ------------------------------------------
-// أعلى طالب
-// ------------------------------------------
-
-function bestStudent(students){
-
-if(students.length===0)
-return null;
-
-return [...students]
-
-.sort((a,b)=>b.points-a.points)[0];
-
-}
-
-// ------------------------------------------
-// آخر تحديث
-// ------------------------------------------
-
-function renderLastUpdate(){
-
-const now=new Date();
-
-const time=now.toLocaleTimeString("ar-SA");
-
-const date=now.toLocaleDateString("ar-SA");
-
-return `
-
-<div class="last-update">
-
-🟢
-
-آخر تحديث
-
-${date}
-
--
-
-${time}
-
-</div>
-
-`;
-
-}
-
-// ------------------------------------------
-// بطاقة معلومات
-// ------------------------------------------
-
-function infoCard(title,value,icon){
-
-return `
-
-<div class="info-card">
-
-<div class="info-icon">
-
-${icon}
-
-</div>
-
-<div>
-
-<div class="info-title">
-
-${title}
-
-</div>
-
-<div class="info-value">
-
-${value}
-
-</div>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-// ------------------------------------------
-// تحميل الصفحة الرئيسية
-// ------------------------------------------
-
-async function openHome(){
-
-await loadDashboard();
-
-}
-
-// ------------------------------------------
-// بدء التطبيق
-// ------------------------------------------
-
-window.addEventListener("load",()=>{
-
-buildUI();
-
-loadDashboard();
-
-});
-
-// =======================================================
-// assets/js/app.js
-// التهيئة العامة للتطبيق
-// =======================================================
-
-// حالة التطبيق
-let currentUser = null;
-let currentRole = "guest";
-
-let students = [];
-let teachers = [];
-let classes = [];
-let initiatives = [];
-
-// =======================================================
-// بدء التطبيق
-// =======================================================
-
-async function initApp() {
-
-    showLoader();
-
-    try {
-
-        await initFirebase();
-
-        await loadCurrentUser();
-
-        await loadAllData();
-
-        buildUI();
-
-        loadDashboard();
-
-    } catch (err) {
-
-        console.error(err);
-
-        toast("تعذر تحميل المنصة", "error");
-
-    } finally {
-
-        hideLoader();
-
-    }
-
-}
-
-// =======================================================
-// تحميل البيانات
-// =======================================================
-
-async function loadAllData() {
-
-    students = await getStudents();
-
-    teachers = await getTeachers();
-
-    classes = await getClasses();
-
-    initiatives = await getInitiatives();
-
-}
-
-// =======================================================
-// تحديث البيانات
-// =======================================================
-
-async function refreshData() {
-
-    await loadAllData();
-
-    if (typeof loadDashboard === "function") {
-
-        loadDashboard();
-
-    }
-
-}
-
-// =======================================================
-// الاستماع للتحديثات المباشرة
-// =======================================================
-
-function startRealtimeUpdates() {
-
-    db.collection("students")
-        .onSnapshot(() => refreshData());
-
-    db.collection("teachers")
-        .onSnapshot(() => refreshData());
-
-    db.collection("classes")
-        .onSnapshot(() => refreshData());
-
-    db.collection("initiatives")
-        .onSnapshot(() => refreshData());
-
-}
-
-// =======================================================
-// تسجيل الخروج
-// =======================================================
-
-async function logout() {
-
-    await firebase.auth().signOut();
-
-    window.location = "login.html";
-
-}
-
-// =======================================================
-// تشغيل التطبيق
-// =======================================================
-
-window.addEventListener("load", () => {
-
-    initApp();
-
-}); // =======================================================
-// assets/js/firebase.js
-// Firebase Configuration
-// =======================================================
-
-// تحميل Firebase
+<input type="file" id="photo-input" accept="image/*" style="display:none">
+
+<footer>
+  منصة التحفيز والتميز — لجنة التميز المدرسي • مدرسة أبي بكر الرازي الابتدائية بينبع<br>
+  إشراف: قائد المدرسة <b>أ. أحمد شديد الرفاعي</b> مشرف لجنة التميز <b>أ. فهد حمود الميموني</b> • مقرر اللجنة: <b>أ. حمدان عمار المحياوي</b> — العام الدراسي 1448هـ
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script>
+/* ====== ربط Firebase (قاعدة البيانات المشتركة لجميع الزوار) ====== */
 const firebaseConfig = {
-
-    apiKey: "YOUR_API_KEY",
-
-    authDomain: "YOUR_PROJECT.firebaseapp.com",
-
-    databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
-
-    projectId: "YOUR_PROJECT",
-
-    storageBucket: "YOUR_PROJECT.appspot.com",
-
-    messagingSenderId: "XXXXXXXX",
-
-    appId: "XXXXXXXXXXXXXXXX"
-
+  apiKey: "AIzaSyBfYecxpWH-0TMCRAWGQMsIrj4ImhcEUAk",
+  authDomain: "razi-platform.firebaseapp.com",
+  databaseURL: "https://razi-platform-default-rtdb.firebaseio.com",
+  projectId: "razi-platform",
+  storageBucket: "razi-platform.firebasestorage.app",
+  messagingSenderId: "802206384009",
+  appId: "1:802206384009:web:5979841b717e4598afab58"
 };
-
-// =======================================================
-// تشغيل Firebase
-// =======================================================
-
 firebase.initializeApp(firebaseConfig);
-
-// الخدمات
-
-const auth = firebase.auth();
-
 const db = firebase.database();
 
-const storage = firebase.storage();
+const DEFAULTS={
+students:[
+ {n:"خالد بن وليد الحربي",g:"الصف الخامس - أ",p:20,c:4},
+ {n:"أحمد بن عبد الله المطيري",g:"الصف الخامس - أ",p:18,c:4},
+ {n:"عبد الرحمن بن علي القحطاني",g:"الصف الرابع - أ",p:15,c:3},
+ {n:"فيصل بن محمد الشهري",g:"الصف الرابع - ب",p:14,c:3},
+ {n:"يوسف بن صالح السبيعي",g:"الصف الخامس - ب",p:12,c:2},
+ {n:"عبد الله بن خالد المري",g:"الصف الرابع - أ",p:11,c:2},
+ {n:"سلطان بن فهد الجهني",g:"الصف الخامس - أ",p:9,c:2},
+ {n:"ماجد بن سعد العنزي",g:"الصف الرابع - ب",p:7,c:1}
+],
+teachers:[
+ {n:"أ. حمدان عمار المحياوي",g:"معلم العلوم — مقرر لجنة التميز",p:25,c:5},
+ {n:"أ. فهد العتيبي",g:"معلم الرياضيات",p:20,c:4},
+ {n:"أ. سالم الجهني",g:"معلم اللغة العربية",p:17,c:3},
+ {n:"أ. ناصر الرشيدي",g:"معلم التربية الإسلامية",p:14,c:3},
+ {n:"أ. بدر الصاعدي",g:"معلم الدراسات الاجتماعية",p:11,c:2},
+ {n:"أ. عمر البلوي",g:"معلم التربية البدنية",p:8,c:2}
+],
+classes:[
+ {n:"الصف الخامس - أ",g:"رائد الفصل: أ. حمدان المحياوي",p:47,c:8},
+ {n:"الصف الرابع - أ",g:"رائد الفصل: أ. فهد العتيبي",p:26,c:5},
+ {n:"الصف الرابع - ب",g:"رائد الفصل: أ. سالم الجهني",p:21,c:4},
+ {n:"الصف الخامس - ب",g:"رائد الفصل: أ. ناصر الرشيدي",p:12,c:2}
+],
+inits:[
+ {t:"معرض العلوم التفاعلي وتجارب الطاقة المتجددة",type:"مشروع علمي متكامل",d:"2026-07-15",desc:"مشروع ريادي أشرف عليه معلم العلوم شمل تجارب عملية للطاقة الشمسية وطاقة الرياح بمشاركة طلاب الصفين الرابع والخامس.",o:"أ. حمدان عمار المحياوي",r:"أستاذ متميز",p:5,s:"ok"},
+ {t:"حملة النظافة والمحافظة على الممتلكات العامة",type:"مبادرة تطوعية مدرسية",d:"2026-07-16",desc:"قيادة حملة تطوعية شملت تنظيف فناء المدرسة وتزيين ممرات الصفوف بلوحات توعوية.",o:"أحمد بن عبد الله المطيري",r:"طالب بالمدرسة",p:3,s:"ok"},
+ {t:"درس تطبيقي متميز باستخدام تقنيات الذكاء الاصطناعي",type:"تقديم درس تطبيقي نموذجي",d:"2026-07-17",desc:"درس نموذجي في مادة العلوم للصف الخامس وُظفت فيه أدوات الذكاء الاصطناعي في العرض والتقويم.",o:"أ. حمدان عمار المحياوي",r:"أستاذ متميز",p:4,s:"ok"},
+ {t:"أولمبياد العلوم المدرسي للصفوف العليا",type:"مسابقة علمية",d:"2026-07-18",desc:"مسابقة علمية تنافسية بين فصول الصفين الرابع والخامس لقياس المهارات العلمية والاستقصائية.",o:"خالد بن وليد الحربي",r:"طالب بالمدرسة",p:4,s:"ok"},
+ {t:"إذاعة مدرسية توعوية عن ترشيد استهلاك المياه",type:"نشاط إذاعي وتوعوي",d:"2026-07-19",desc:"فقرة إذاعية متكاملة عن أهمية ترشيد المياه في بيئة ينبع تضمنت مشاهد تمثيلية ومسابقة صباحية.",o:"عبد الرحمن بن علي القحطاني",r:"طالب بالمدرسة",p:3,s:"ok"},
+ {t:"مبادرة الحديقة الصفية وزراعة النباتات المحلية",type:"مبادرة تطوعية مدرسية",d:"2026-07-20",desc:"إنشاء ركن زراعي تعليمي بمشاركة الطلاب لزراعة نباتات البيئة المحلية وربطها بدروس العلوم.",o:"فيصل بن محمد الشهري",r:"طالب بالمدرسة",p:3,s:"wait"}
+]};
 
-// =======================================================
-// تهيئة Firebase
-// =======================================================
+let DATA=JSON.parse(JSON.stringify(DEFAULTS));
+let PASS="1448";
+let loggedIn=false;
+let firebaseReady=false;
 
-async function initFirebase() {
-
-    return new Promise((resolve) => {
-
-        auth.onAuthStateChanged(user => {
-
-            currentUser = user || null;
-
-            resolve();
-
-        });
-
-    });
-
+function normalizeList(v){
+  if(!v)return[];
+  return Array.isArray(v)?v.filter(Boolean):Object.values(v);
+}
+function normalizeData(d){
+  return{
+    students:normalizeList(d&&d.students),
+    teachers:normalizeList(d&&d.teachers),
+    classes:normalizeList(d&&d.classes),
+    inits:normalizeList(d&&d.inits)
+  };
+}
+function isEditingAdmin(){
+  return loggedIn&&document.getElementById("view-admin").classList.contains("active");
 }
 
-// =======================================================
-// قراءة البيانات
-// =======================================================
+/* الاستماع المباشر: أي تحديث في القاعدة يظهر لكل الزوار فورًا */
+db.ref("platform").on("value",snap=>{
+  const val=snap.val();
+  if(!val||!val.data){
+    /* أول تشغيل: زرع البيانات الافتراضية في القاعدة */
+    db.ref("platform").set({data:DEFAULTS,pass:PASS});
+    return;
+  }
+  firebaseReady=true;
+  if(val.pass)PASS=String(val.pass);
+  if(!isEditingAdmin()){
+    DATA=normalizeData(val.data);
+    renderAll();
+  }
+},err=>{
+  console.error("Firebase read error:",err);
+});
 
-async function read(path) {
-
-    const snap = await db.ref(path).get();
-
-    if (!snap.exists()) return null;
-
-    return snap.val();
-
+function portalClick(){
+  if(loggedIn){
+    loggedIn=false;
+    document.getElementById("portal-btn").textContent="🔑 دخول بوابة المدرسة";
+    goView("dash");
+  }else{
+    openLogin();
+  }
+}
+function openLogin(){
+  document.getElementById("login-err").style.display="none";
+  document.getElementById("login-pass").value="";
+  document.getElementById("login-overlay").classList.add("open");
+  setTimeout(()=>document.getElementById("login-pass").focus(),100);
+}
+function closeLogin(){document.getElementById("login-overlay").classList.remove("open")}
+function doLogin(){
+  if(document.getElementById("login-pass").value===PASS){
+    loggedIn=true;
+    closeLogin();
+    document.getElementById("portal-btn").textContent="🔓 تسجيل الخروج";
+    goView("admin");
+  }else{
+    document.getElementById("login-err").style.display="block";
+  }
+}
+async function changePass(){
+  const v=document.getElementById("new-pass").value.trim();
+  if(v.length<4){alert("فضلاً اختر كلمة مرور من 4 خانات فأكثر.");return}
+  PASS=v;
+  const m=document.getElementById("pass-msg");
+  try{
+    await db.ref("platform/pass").set(v);
+    m.textContent="✔ تم تحديث كلمة المرور وحفظها بشكل دائم";
+    m.style.background="#e2f5e9";m.style.color="#1a7a43";
+  }catch(e){
+    m.textContent="⚠ تعذر الحفظ — تحقق من الاتصال بالإنترنت وحاول مجددًا";
+    m.style.background="#fdf3dd";m.style.color="#a77410";
+  }
+  document.getElementById("new-pass").value="";
+  m.classList.add("show");setTimeout(()=>m.classList.remove("show"),4000);
 }
 
-// =======================================================
-// كتابة البيانات
-// =======================================================
-
-async function write(path, data) {
-
-    return db.ref(path).set(data);
-
-}
-
-// =======================================================
-// تحديث البيانات
-// =======================================================
-
-async function update(path, data) {
-
-    return db.ref(path).update(data);
-
-}
-
-// =======================================================
-// حذف البيانات
-// =======================================================
-
-async function remove(path) {
-
-    return db.ref(path).remove();
-
-} // =======================================================
-// قراءة الطلاب
-// =======================================================
-
-async function getStudents() {
-
-    const data = await read("platform/data/students");
-
-    return data ? Object.values(data) : [];
-
-}
-
-// =======================================================
-// حفظ جميع الطلاب
-// =======================================================
-
-async function saveStudents(list) {
-
-    return write("platform/data/students", list);
-
-}
-
-// =======================================================
-// إضافة طالب
-// =======================================================
-
-async function addStudent(student) {
-
-    const list = await getStudents();
-
-    list.push(student);
-
-    return saveStudents(list);
-
-}
-
-// =======================================================
-// حذف طالب
-// =======================================================
-
-async function deleteStudent(index) {
-
-    const list = await getStudents();
-
-    list.splice(index, 1);
-
-    return saveStudents(list);
-
-}
-
-// =======================================================
-// قراءة المعلمين
-// =======================================================
-
-async function getTeachers() {
-
-    const data = await read("platform/data/teachers");
-
-    return data ? Object.values(data) : [];
-
-}
-
-// =======================================================
-// حفظ المعلمين
-// =======================================================
-
-async function saveTeachers(list) {
-
-    return write("platform/data/teachers", list);
-
-}
-
-// =======================================================
-// قراءة الفصول
-// =======================================================
-
-async function getClasses() {
-
-    const data = await read("platform/data/classes");
-
-    return data ? Object.values(data) : [];
-
-}
-
-// =======================================================
-// حفظ الفصول
-// =======================================================
-
-async function saveClasses(list) {
-
-    return write("platform/data/classes", list);
-
-}
-
-// =======================================================
-// قراءة المبادرات
-// =======================================================
-
-async function getInitiatives() {
-
-    const data = await read("platform/data/inits");
-
-    return data ? Object.values(data) : [];
-
-}
-
-// =======================================================
-// حفظ المبادرات
-// =======================================================
-
-async function saveInitiatives(list) {
-
-    return write("platform/data/inits", list);
-
-}
-
-// =======================================================
-// إضافة مبادرة
-// =======================================================
-
-async function addInitiative(item) {
-
-    const list = await getInitiatives();
-
-    list.unshift(item);
-
-    return saveInitiatives(list);
-
-} // =======================================================
-// رفع صورة إلى Firebase Storage
-// =======================================================
-
-async function uploadPhoto(file, folder = "students") {
-
-    if (!file) return null;
-
-    const ext = file.name.split(".").pop();
-    const fileName = `${folder}/${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`;
-
-    const storageRef = storage.ref(fileName);
-
-    const snapshot = await storageRef.put(file);
-
-    const url = await snapshot.ref.getDownloadURL();
-
-    return url;
-
-}
-
-// =======================================================
-// حذف صورة من Firebase Storage
-// =======================================================
-
-async function deletePhoto(photoUrl) {
-
-    if (!photoUrl) return;
-
-    try {
-
-        const ref = storage.refFromURL(photoUrl);
-
-        await ref.delete();
-
-    } catch (err) {
-
-        console.error("Delete photo error:", err);
-
-    }
-
-}
-
-// =======================================================
-// تحديث صورة طالب
-// =======================================================
-
-async function updateStudentPhoto(index, file) {
-
-    const list = await getStudents();
-
-    if (!list[index]) return;
-
-    // حذف الصورة القديمة إن وجدت
-    if (list[index].photo) {
-
-        await deletePhoto(list[index].photo);
-
-    }
-
-    // رفع الصورة الجديدة
-    const url = await uploadPhoto(file, "students");
-
-    list[index].photo = url;
-
-    await saveStudents(list);
-
-}
-
-// =======================================================
-// إنشاء نسخة احتياطية
-// =======================================================
-
-async function backupDatabase() {
-
-    const data = await read("platform/data");
-
-    return JSON.stringify(data, null, 2);
-
-}
-
-// =======================================================
-// استعادة نسخة احتياطية
-// =======================================================
-
-async function restoreDatabase(jsonText) {
-
-    const data = JSON.parse(jsonText);
-
-    await write("platform/data", data);
-
-}
-
-// =======================================================
-// تصدير البيانات
-// =======================================================
-
-async function exportDatabase() {
-
-    const json = await backupDatabase();
-
-    const blob = new Blob([json], {
-        type: "application/json"
-    });
-
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-
-    a.href = url;
-
-    a.download = "razi-platform-backup.json";
-
-    a.click();
-
-    URL.revokeObjectURL(url);
-
-}
-
-// =======================================================
-// assets/js/auth.js
-// Authentication & Roles
-// =======================================================
-
-// =======================================================
-// المتغيرات العامة
-// =======================================================
-
-let currentUser = null;
-let currentRole = "guest";
-
-// =======================================================
-// تحميل المستخدم الحالي
-// =======================================================
-
-async function loadCurrentUser() {
-
-    return new Promise((resolve) => {
-
-        auth.onAuthStateChanged(async (user) => {
-
-            if (!user) {
-
-                currentUser = null;
-                currentRole = "guest";
-
-                resolve(null);
-                return;
-
-            }
-
-            currentUser = user;
-
-            const snap = await db
-                .ref("users/" + user.uid)
-                .get();
-
-            if (snap.exists()) {
-
-                currentRole = snap.val().role || "teacher";
-
-            } else {
-
-                currentRole = "teacher";
-
-            }
-
-            resolve(user);
-
-        });
-
-    });
-
-}
-
-// =======================================================
-// تسجيل الدخول
-// =======================================================
-
-async function login(email, password) {
-
-    try {
-
-        await auth.signInWithEmailAndPassword(
-            email,
-            password
-        );
-
-        toast("تم تسجيل الدخول بنجاح");
-
-        window.location.href = "index.html";
-
-    } catch (err) {
-
-        console.error(err);
-
-        toast("البريد الإلكتروني أو كلمة المرور غير صحيحة", "error");
-
-    }
-
-}
-
-// =======================================================
-// تسجيل الخروج
-// =======================================================
-
-async function logout() {
-
-    await auth.signOut();
-
-    currentUser = null;
-    currentRole = "guest";
-
-    window.location.href = "login.html";
-
-}
-
-// =======================================================
-// إنشاء مستخدم جديد (للمدير فقط)
-// =======================================================
-
-async function createUser(email, password, role) {
-
-    if (!isAdmin()) {
-
-        toast("ليس لديك صلاحية", "error");
-
-        return;
-
-    }
-
-    try {
-
-        const result =
-            await auth.createUserWithEmailAndPassword(
-                email,
-                password
-            );
-
-        await db.ref("users/" + result.user.uid).set({
-
-            email: email,
-            role: role
-
-        });
-
-        toast("تم إنشاء المستخدم");
-
-    } catch (err) {
-
-        console.error(err);
-
-        toast("تعذر إنشاء المستخدم", "error");
-
-    }
-
-} // =======================================================
-// assets/js/auth.js
-// الجزء الثاني
-// الصلاحيات وإدارة الحساب
-// =======================================================
-
-// =======================================================
-// التحقق من تسجيل الدخول
-// =======================================================
-
-function isLoggedIn() {
-
-    return currentUser !== null;
-
-}
-
-// =======================================================
-// صلاحية المدير
-// =======================================================
-
-function isAdmin() {
-
-    return currentRole === "admin";
-
-}
-
-// =======================================================
-// صلاحية المعلم
-// =======================================================
-
-function isTeacher() {
-
-    return currentRole === "teacher";
-
-}
-
-// =======================================================
-// صلاحية الطالب
-// =======================================================
-
-function isStudent() {
-
-    return currentRole === "student";
-
-}
-
-// =======================================================
-// حماية صفحة الإدارة
-// =======================================================
-
-function requireAdmin() {
-
-    if (!isAdmin()) {
-
-        toast("ليس لديك صلاحية الدخول", "error");
-
-        window.location.href = "index.html";
-
-        return false;
-
-    }
-
+async function persist(){
+  try{
+    await db.ref("platform/data").set(DATA);
     return true;
-
+  }catch(e){
+    console.error("Firebase write error:",e);
+    return false;
+  }
 }
 
-// =======================================================
-// حماية أي صفحة تتطلب تسجيل دخول
-// =======================================================
-
-function requireLogin() {
-
-    if (!isLoggedIn()) {
-
-        window.location.href = "login.html";
-
-        return false;
-
-    }
-
-    return true;
-
+document.querySelectorAll("nav.tabs button").forEach(b=>{
+  b.onclick=()=>goView(b.dataset.view);
+});
+function goView(v){
+  if(v==="admin"&&!loggedIn){openLogin();return}
+  document.querySelectorAll("nav.tabs button").forEach(x=>x.classList.toggle("active",x.dataset.view===v));
+  document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));
+  document.getElementById("view-"+v).classList.add("active");
+  if(v==="admin")renderAdmin();
+}
+function goHonor(sub){
+  goView("honor");
+  document.querySelector('.sub-tabs button[data-sub="'+sub+'"]').click();
 }
 
-// =======================================================
-// تغيير كلمة المرور
-// =======================================================
-
-async function changePassword(newPassword) {
-
-    if (!currentUser) {
-
-        toast("يجب تسجيل الدخول أولاً", "error");
-
-        return;
-    }
-
-    try {
-
-        await currentUser.updatePassword(newPassword);
-
-        toast("تم تغيير كلمة المرور بنجاح");
-
-    } catch (err) {
-
-        console.error(err);
-
-        toast("تعذر تغيير كلمة المرور", "error");
-
-    }
-
+function renderStats(){
+  document.getElementById("stat-students").textContent=DATA.students.length;
+  document.getElementById("stat-teachers").textContent=DATA.teachers.length;
+  document.getElementById("stat-inits").textContent=DATA.inits.length;
+  document.getElementById("stat-points").textContent=DATA.inits.filter(i=>i.s==="ok").reduce((a,i)=>a+(+i.p||0),0);
+}
+function renderPodium(el,data,isStudents){
+  const top=[...data].sort((a,b)=>b.p-a.p).slice(0,3);
+  const order=[[top[1],"second","٢"],[top[0],"first","١"],[top[2],"third","٣"]];
+  el.innerHTML=order.filter(o=>o[0]).map(([x,cls,num])=>{
+    const idx=data.indexOf(x);
+    const visual=x.img
+      ?`<img class="photo46" src="${x.img}" alt="${esc(x.n)}">`
+      :`<div class="avatar">${cls==="first"?"👑":cls==="second"?"🥈":"🥉"}</div>`;
+    const cam=isStudents
+      ?`<button class="cam-btn ${x.img?"has":""}" title="رفع صورة الطالب (4×6)" onclick="pickPhoto(${idx})">📷</button>`
+      :"";
+    return `
+    <div class="step ${cls}">
+      ${visual}
+      <div class="name">${esc(x.n)}</div>
+      <div class="pts">${x.p} ن</div>
+      ${cam}
+      <div class="bar">${num}</div>
+    </div>`;
+  }).join("");
 }
 
-// =======================================================
-// إعادة تعيين كلمة المرور عبر البريد
-// =======================================================
+let pendingPhotoIdx=null;
+function pickPhoto(i){
+  if(!loggedIn){openLogin();return}
+  pendingPhotoIdx=i;
+  document.getElementById("photo-input").value="";
+  document.getElementById("photo-input").click();
+}
+function delPhoto(i){
+  if(!loggedIn){openLogin();return}
+  if(!confirm("هل تريد حذف صورة هذا الطالب؟"))return;
+  delete DATA.students[i].img;
+  persist();renderAll();
+  if(document.getElementById("view-admin").classList.contains("active"))renderAdmin();
+}
+document.getElementById("photo-input").addEventListener("change",function(){
+  const f=this.files&&this.files[0];
+  if(!f||pendingPhotoIdx==null)return;
+  const rd=new FileReader();
+  rd.onload=e=>{
+    const img=new Image();
+    img.onload=()=>{
+      const W=240,H=360;
+      const cv=document.createElement("canvas");cv.width=W;cv.height=H;
+      const cx=cv.getContext("2d");
+      const sr=img.width/img.height,tr=W/H;
+      let sx=0,sy=0,sw=img.width,sh=img.height;
+      if(sr>tr){sw=img.height*tr;sx=(img.width-sw)/2}
+      else{sh=img.width/tr;sy=(img.height-sh)/2}
+      cx.drawImage(img,sx,sy,sw,sh,0,0,W,H);
+      DATA.students[pendingPhotoIdx].img=cv.toDataURL("image/jpeg",.85);
+      pendingPhotoIdx=null;
+      persist();renderAll();
+      if(document.getElementById("view-admin").classList.contains("active"))renderAdmin();
+    };
+    img.src=e.target.result;
+  };
+  rd.readAsDataURL(f);
+});
+function renderLog(){
+  const ft=document.getElementById("f-type").value;
+  const fs=document.getElementById("f-status").value;
+  const list=DATA.inits.filter(i=>(!ft||i.type===ft)&&(!fs||i.s===fs));
+  document.getElementById("log-list").innerHTML=list.length?list.map(i=>`
+    <div class="init-card">
+      <div class="init-main">
+        <div class="meta-row"><span class="tag">${esc(i.type)}</span><span class="date">📅 ${esc(i.d)}</span></div>
+        <h3>${esc(i.t)}</h3>
+        <div class="desc">${esc(i.desc)}</div>
+        <div class="owner">المبادر: <b>${esc(i.o)}</b> <span class="role">(${esc(i.r)})</span></div>
+        <span class="status ${i.s}">${i.s==="ok"?"✔ معتمد ومضاف":"⏳ قيد المراجعة"}</span>
+      </div>
+      <div class="init-pts"><div class="lbl">النقاط</div><div class="val">+${i.p}</div></div>
+    </div>`).join(""):
+    '<div style="text-align:center;color:var(--muted);padding:40px">لا توجد مشاركات مطابقة لخيارات التصفية الحالية.</div>';
+}
+const medals=["🥇","🥈","🥉"];
+let currentSub="students";
+document.querySelectorAll(".sub-tabs button").forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll(".sub-tabs button").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active");currentSub=b.dataset.sub;renderRanks();
+  };
+});
+function renderRanks(){
+  const data=currentSub==="students"?DATA.students:currentSub==="teachers"?DATA.teachers:DATA.classes;
+  const unit=currentSub==="classes"?"مشاركة معتمدة للفصل":"مشاركة معتمدة";
+  document.getElementById("rank-list").innerHTML=[...data].sort((a,b)=>b.p-a.p).map((x,i)=>`
+    <div class="rank">
+      <div class="medal ${i<3?"m"+(i+1):""}">${i<3?medals[i]:i+1}</div>
+      <div class="rank-info">
+        <div class="nm">${esc(x.n)}</div>
+        <div class="sub">${esc(x.g)} • ${x.c} ${unit}</div>
+      </div>
+      <div class="rank-pts">${x.p} نقطة</div>
+    </div>`).join("");
+}
+function renderAll(){
+  renderStats();
+  renderPodium(document.getElementById("podium-students"),DATA.students,true);
+  renderPodium(document.getElementById("podium-teachers"),DATA.teachers,false);
+  renderLog();renderRanks();
+}
+function esc(s){return String(s??"").replace(/[<>&"]/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[c]))}
 
-async function resetPassword(email) {
-
-    try {
-
-        await auth.sendPasswordResetEmail(email);
-
-        toast("تم إرسال رابط إعادة تعيين كلمة المرور");
-
-    } catch (err) {
-
-        console.error(err);
-
-        toast("تعذر إرسال رابط إعادة التعيين", "error");
-
-    }
-
+let adminTab="students";
+document.querySelectorAll(".admin-tabs button").forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll(".admin-tabs button").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active");adminTab=b.dataset.atab;renderAdmin();
+  };
+});
+function renderAdmin(){
+  const area=document.getElementById("admin-area");
+  if(adminTab==="inits"){
+    area.innerHTML=`
+      <div class="edit-row head init-edit-row"><div>عنوان المشاركة</div><div>اسم المبادر</div><div>النقاط</div><div>الحالة</div><div></div></div>
+      ${DATA.inits.map((x,i)=>`
+      <div class="edit-row init-edit-row">
+        <input value="${esc(x.t)}" onchange="DATA.inits[${i}].t=this.value">
+        <input value="${esc(x.o)}" onchange="DATA.inits[${i}].o=this.value">
+        <input class="num-in" type="number" value="${x.p}" onchange="DATA.inits[${i}].p=+this.value||0">
+        <select style="font-family:inherit;font-size:13px;font-weight:700;padding:9px;border:1px solid var(--line);border-radius:9px" onchange="DATA.inits[${i}].s=this.value">
+          <option value="ok" ${x.s==="ok"?"selected":""}>معتمد ومضاف</option>
+          <option value="wait" ${x.s==="wait"?"selected":""}>قيد المراجعة</option>
+        </select>
+        <button class="del-btn" onclick="delRow(${i})" title="حذف">🗑</button>
+      </div>`).join("")}`;
+    return;
+  }
+  const labels=adminTab==="students"?["اسم الطالب","الصف والفصل"]:adminTab==="teachers"?["اسم المعلم","التخصص / الصفة"]:["اسم الفصل","رائد الفصل"];
+  const arr=DATA[adminTab];
+  area.innerHTML=`
+    <div class="edit-row head"><div>${labels[0]}</div><div>${labels[1]}</div><div>النقاط</div><div>المشاركات</div><div></div></div>
+    ${arr.map((x,i)=>`
+    <div class="edit-row">
+      <div class="name-cell">
+        <input value="${esc(x.n)}" onchange="DATA.${adminTab}[${i}].n=this.value">
+        ${adminTab==="students"?`
+          ${x.img?`<img class="admin-thumb" src="${x.img}" alt="">`:""}
+          <button class="cam-btn ${x.img?"has":""}" title="رفع صورة الطالب (4×6)" onclick="pickPhoto(${i})">📷</button>
+          ${x.img?`<button class="cam-btn" style="background:#fdecec;border-color:#f3c1c1" title="حذف الصورة" onclick="delPhoto(${i})">✖</button>`:""}`:""}
+      </div>
+      <input value="${esc(x.g)}" onchange="DATA.${adminTab}[${i}].g=this.value">
+      <input class="num-in" type="number" value="${x.p}" onchange="DATA.${adminTab}[${i}].p=+this.value||0">
+      <input class="num-in" type="number" value="${x.c}" onchange="DATA.${adminTab}[${i}].c=+this.value||0">
+      <button class="del-btn" onclick="delRow(${i})" title="حذف">🗑</button>
+    </div>`).join("")}`;
+}
+function addRow(){
+  if(adminTab==="inits"){
+    DATA.inits.unshift({t:"مشاركة جديدة",type:"مبادرة تطوعية مدرسية",d:new Date().toISOString().slice(0,10),desc:"وصف المشاركة",o:"اسم المبادر",r:"طالب بالمدرسة",p:3,s:"wait"});
+  }else{
+    DATA[adminTab].push({n:"اسم جديد",g:adminTab==="students"?"الصف الرابع - أ":adminTab==="teachers"?"معلم":"رائد الفصل: ...",p:0,c:0});
+  }
+  renderAdmin();
+}
+function delRow(i){
+  if(!confirm("هل تريد حذف هذا الصف؟"))return;
+  (adminTab==="inits"?DATA.inits:DATA[adminTab]).splice(i,1);
+  renderAdmin();
+}
+async function saveAdmin(){
+  const ok=await persist();
+  renderAll();
+  const m=document.getElementById("saved-msg");
+  if(ok){
+    m.textContent="✔ تم الحفظ للجميع وتحديث اللوحات مباشرة";
+    m.style.background="#e2f5e9";m.style.color="#1a7a43";
+  }else{
+    m.textContent="⚠ تعذر الحفظ — تحقق من الاتصال بالإنترنت وحاول مجددًا";
+    m.style.background="#fdf3dd";m.style.color="#a77410";
+  }
+  m.classList.add("show");setTimeout(()=>m.classList.remove("show"),4000);
 }
 
-// =======================================================
-// الحصول على اسم المستخدم
-// =======================================================
-
-function getUserName() {
-
-    if (!currentUser) {
-
-        return "زائر";
-
-    }
-
-    return currentUser.displayName ||
-           currentUser.email ||
-           "مستخدم";
-
+function openModal(){document.getElementById("overlay").classList.add("open")}
+function closeModal(){document.getElementById("overlay").classList.remove("open")}
+function saveInit(){
+  const t=document.getElementById("m-title").value.trim();
+  const o=document.getElementById("m-owner").value.trim();
+  if(!t||!o){alert("فضلاً أكمل عنوان المشاركة واسم المبادر.");return}
+  DATA.inits.unshift({
+    t,type:document.getElementById("m-type").value,
+    d:new Date().toISOString().slice(0,10),
+    desc:document.getElementById("m-desc").value.trim()||"مشاركة جديدة بانتظار مراجعة لجنة التميز المدرسي.",
+    o,r:document.getElementById("m-role").value,
+    p:+document.getElementById("m-pts").value||3,s:"wait"
+  });
+  closeModal();persist();renderAll();
+  ["m-title","m-owner","m-desc"].forEach(id=>document.getElementById(id).value="");
 }
-
-// =======================================================
-// الحصول على البريد الإلكتروني
-// =======================================================
-
-function getUserEmail() {
-
-    if (!currentUser) {
-
-        return "";
-
-    }
-
-    return currentUser.email;
-
-} // =======================================================
-// assets/js/auth.js
-// الجزء الثالث - ميزات متقدمة
-// =======================================================
-
-// =======================================================
-// تسجيل الدخول بواسطة Google
-// =======================================================
-
-async function loginWithGoogle() {
-
-    try {
-
-        const provider = new firebase.auth.GoogleAuthProvider();
-
-        const result = await auth.signInWithPopup(provider);
-
-        const user = result.user;
-
-        const ref = db.ref("users/" + user.uid);
-
-        const snap = await ref.get();
-
-        if (!snap.exists()) {
-
-            await ref.set({
-
-                name: user.displayName || "",
-
-                email: user.email || "",
-
-                role: "teacher",
-
-                createdAt: Date.now()
-
-            });
-
-        }
-
-        toast("تم تسجيل الدخول بنجاح");
-
-        window.location.href = "index.html";
-
-    } catch (err) {
-
-        console.error(err);
-
-        toast("فشل تسجيل الدخول بواسطة Google", "error");
-
-    }
-
-}
-
-// =======================================================
-// تسجيل نشاط المستخدم
-// =======================================================
-
-async function logActivity(action) {
-
-    if (!currentUser) return;
-
-    await db.ref("logs").push({
-
-        uid: currentUser.uid,
-
-        email: currentUser.email,
-
-        action: action,
-
-        date: Date.now()
-
-    });
-
-}
-
-// =======================================================
-// تحديث الاسم
-// =======================================================
-
-async function updateProfileName(name) {
-
-    if (!currentUser) return;
-
-    await currentUser.updateProfile({
-
-        displayName: name
-
-    });
-
-    await db.ref("users/" + currentUser.uid).update({
-
-        name: name
-
-    });
-
-}
-
-// =======================================================
-// حذف المستخدم (مدير فقط)
-// =======================================================
-
-async function deleteUser(uid) {
-
-    if (!isAdmin()) {
-
-        toast("ليس لديك صلاحية", "error");
-
-        return;
-
-    }
-
-    await db.ref("users/" + uid).remove();
-
-}
-
-// =======================================================
-// إنهاء جميع الجلسات
-// =======================================================
-
-async function signOutEverywhere() {
-
-    await auth.signOut();
-
-    currentUser = null;
-
-    currentRole = "guest";
-
-    location.href = "login.html";
-
-}
-
-// =======================================================
-// التحقق من صلاحية الجلسة
-// =======================================================
-
-function watchSession() {
-
-    auth.onAuthStateChanged(user => {
-
-        if (!user) {
-
-            currentUser = null;
-
-            currentRole = "guest";
-
-            if (location.pathname.includes("admin")) {
-
-                location.href = "login.html";
-
-            }
-
-        }
-
-    });
-
-}
-
-// =======================================================
-// تشغيل مراقبة الجلسة
-// =======================================================
-
-watchSession();
+document.getElementById("overlay").addEventListener("click",e=>{if(e.target.id==="overlay")closeModal()});
+document.getElementById("login-overlay").addEventListener("click",e=>{if(e.target.id==="login-overlay")closeLogin()});
+
+renderAll();
+</script>
+</body>
+</html>
